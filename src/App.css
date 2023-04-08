@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+
 /* Simple browser reset */
 * {
     box-sizing: border-box;
@@ -10,6 +12,39 @@ html, body {
     font-size: 16px;
 }
 
+body{
+    font-family: 'Mulish', sans-serif;
+}
+
 div.navbar-bg{
     background-color: lightblue;
+    width: 100%;
+}
+
+nav.navlinks{
+    text-align: left;
+}
+
+nav.navlinks li#login{
+    float: right;
+}
+
+nav.navlinks li{
+    display: inline-block;
+    margin-right: 5%;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+
+nav.navlinks li a{
+    text-decoration: none;
+    font-size: 20px;
+    padding-bottom: 10%;
+}
+
+nav.navlinks li:hover{
+    background-color: grey;
+    padding: 10px 15px;
+    border-radius: 3px;
+    transition: 0.3s ease all;
 }
