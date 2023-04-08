@@ -1,1 +1,15 @@
+/* Simple browser reset */
+* {
+    box-sizing: border-box;
+}
 
+html, body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+div.navbar-bg{
+    background-color: lightblue;
+}
