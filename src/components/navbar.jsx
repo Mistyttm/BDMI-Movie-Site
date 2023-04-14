@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "../logo.svg";
 
 function Navbar() {
 
@@ -8,15 +7,13 @@ function Navbar() {
         <div class="navbar-bg">
             {/* <img src={logo} alt="website logo"/> */}
             <nav class="navlinks">
+                <h1 class="logo">BDMI</h1>
+                <form>
+                    <input class="searchBox" type="text" id="globalSearch" name="globalSearch" placeholder="Search" />
+                </form>
                 <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/Movies">Movies</Link>
-                    </li>
                     <li id="login">
-                        <Link to="/Login">Login/Register</Link>
+                        <Link to="/Login" class="loginreg">Login/Register</Link>
                     </li>
                 </ul>
             </nav>

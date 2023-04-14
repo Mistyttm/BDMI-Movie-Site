@@ -14,37 +14,62 @@ html, body {
 
 body{
     font-family: 'Mulish', sans-serif;
+    color: #fff !important;
+    background: #0F5257 !important;
 }
 
-div.navbar-bg{
-    background-color: lightblue;
+.navlinks{
+    background-color: #58C3FF;
     width: 100%;
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-nav.navlinks{
-    text-align: left;
+.logo {
+    
+}
+
+div.navbar-bg form {
+    
+}
+
+input.searchBox[type=text] {
+    width: 50em;
+    padding: 10px;
+    padding-left: 25px;
+    border-radius: 100px;
+    border: none;
+}
+
+nav.navlinks ul {
+    margin: 0;
+    padding: 0;
 }
 
 nav.navlinks li#login{
-    float: right;
+    font-weight: 600;
+    font-size: 1.2em;
+    list-style: none;
 }
 
-nav.navlinks li{
-    display: inline-block;
-    margin-right: 5%;
-    padding: 10px 15px;
-    border-radius: 3px;
-}
-
-nav.navlinks li a{
+.loginreg:link {
+    color: #ffffff;
     text-decoration: none;
-    font-size: 20px;
-    padding-bottom: 10%;
 }
 
-nav.navlinks li:hover{
-    background-color: grey;
-    padding: 10px 15px;
-    border-radius: 3px;
-    transition: 0.3s ease all;
+.loginreg:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.loginreg:hover {
+    color: #9C92A3;
+    text-decoration: none;
+}
+
+.loginreg:active {
+    color: #ffffff;
+    text-decoration: none;
 }
