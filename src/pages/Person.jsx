@@ -7,7 +7,7 @@ function Person() {
     // const navigate = useNavigate();
 
     return (
-        <div>
+        <div class="App">
             <Navbar />
             <p>Person Test</p>
             <Footer />

@@ -14,7 +14,7 @@ function Navbar() {
                 </form>
                 <ul>
                     <li id="login">
-                        <Link to="/Login" class="loginreg">Login/Register</Link>
+                        <h2><Link to="/Login" class="loginreg">Login/Register</Link></h2>
                     </li>
                 </ul>
             </nav>

@@ -20,9 +20,11 @@ body{
 }
 
 .App {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: stretch;
 }
 
 .main-content {
@@ -32,7 +34,7 @@ body{
 .navlinks{
     background-color: #58C3FF;
     width: 100%;
-    padding: 2em;
+    padding: 1.5em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -40,12 +42,14 @@ body{
 
 .logo {
     font-family: 'Koulen', cursive;
+    margin-top: .4rem;
 }
 
 input.searchBox[type=text] {
     font-family: 'Koulen', cursive;
     width: 900px;
     margin: auto;
+    margin-top: .4em;
     padding: 10px;
     padding-left: 25px;
     border-radius: 100px;
@@ -60,7 +64,8 @@ nav.navlinks ul {
 }
 
 nav.navlinks li#login{
-    font-size: 2em;
+    margin-top: .6em;
+    font-size: auto;
     list-style: none;
 }
 
@@ -115,6 +120,8 @@ div.extra-text {
     font-family: 'Koulen', cursive;
     text-align: center;
     margin: 5em auto 5em auto;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 @media screen and (max-width: 1920px) {
@@ -239,6 +246,9 @@ div.extra-text {
 }
 @media screen and (max-width: 750px) {
     input.searchBox[type=text] {
+        display: none;
+    }
+    nav.navlinks li#login {
         display: none;
     }
 }

@@ -7,7 +7,7 @@ function Movie() {
     // const navigate = useNavigate();
 
     return (
-        <div>
+        <div class="App">
             <Navbar />
             <p>Movie Test</p>
             <Footer />

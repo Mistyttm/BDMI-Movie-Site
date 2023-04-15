@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div class="main-content">
+      <div className="main-content">
         <HeroImg />
-        <div class="extra-text">
+        <div className="extra-text">
           <h1>Welcome to BDMI</h1>
           <h2>We hope you find what you're looking for</h2>
           <p>We're not IMDB</p>

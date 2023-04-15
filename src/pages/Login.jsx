@@ -7,7 +7,7 @@ function Login() {
     // const navigate = useNavigate();
 
     return (
-        <div>
+        <div class="App">
             <Navbar />
             <p>Login Test</p>
             <Footer />
