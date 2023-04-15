@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import '../Styles/Navbar/navMedia.css'
 
 function Navbar() {
 
