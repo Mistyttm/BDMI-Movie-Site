@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from '../components/navbar';
+import Footer from "../components/footer";
 // import { useNavigate } from "react-router-dom";
 
 function Person() {
@@ -9,6 +10,7 @@ function Person() {
         <div>
             <Navbar />
             <p>Person Test</p>
+            <Footer />
         </div>
     );
 }

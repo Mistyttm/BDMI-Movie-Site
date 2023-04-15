@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from '../components/navbar';
+import Footer from "../components/footer";
 // import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -9,6 +10,7 @@ function Login() {
         <div>
             <Navbar />
             <p>Login Test</p>
+            <Footer />
         </div>
     );
 }
