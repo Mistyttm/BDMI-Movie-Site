@@ -1,13 +1,16 @@
 import React from "react";
+import RegisterBox from '../components/registerBox';
 import Navbar from '../components/navbar';
 import Footer from "../components/footer";
+import '../Styles/Register/Register.css';
+import '../Styles/Register/RegisterMedia.css'
 
 function Register() {
 
     return (
         <div class="App">
             <Navbar />
-            <p>Register Test</p>
+            <RegisterBox />
             <Footer />
         </div>
     );

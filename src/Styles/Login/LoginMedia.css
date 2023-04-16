@@ -14,9 +14,11 @@
         width: 40em;
     }
     input.loginEmail[type=text] {
+        margin-left: 4em;
         width: 430px;
     }
     input.loginPassword[type=text] {
+        margin-left: 4em;
         width: 430px;
     }
 }
