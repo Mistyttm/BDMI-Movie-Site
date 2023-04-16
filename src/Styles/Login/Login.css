@@ -1,0 +1,58 @@
+.loginWrapper {
+    background-color: #0B3142;
+    width: 50em;
+    margin: auto;
+    height: 35em;
+    border-radius: 50px;
+    padding: 3%
+}
+
+.loginBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1.loginTitle {
+    font-family: 'Koulen', cursive;
+    font-size: 5em;
+    margin-bottom: .5em;
+}
+
+input.loginEmail[type=text] {
+    margin-left: 4.5em;
+    width: 530px;
+    border: none;
+    padding: 10px;
+    border-radius: 100px;
+}
+
+input.loginPassword[type=text] {
+    margin-left: 4.5em;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    width: 530px;
+    border: none;
+    padding: 10px;
+    border-radius: 100px;
+}
+
+input#loginSubmit[type=submit] {
+    font-family: 'Koulen', cursive;
+    font-size: 1.5em;
+    display:flex;
+    margin: auto;
+    border: none;
+    padding: 10px 30px 10px 30px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #fff;
+    margin-bottom: 1.5em;
+}
+
+.register {
+    font-family: 'Koulen', cursive;
+    font-size: 1.2em;
+    color: #9b9b9b;
+    text-decoration: none;
+}

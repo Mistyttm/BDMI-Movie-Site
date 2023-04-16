@@ -1,15 +1,16 @@
 import React from "react";
+import LoginBox from "../components/loginBox";
 import Navbar from '../components/navbar';
 import Footer from "../components/footer";
-// import { useNavigate } from "react-router-dom";
+import '../Styles/Login/Login.css'
+import '../Styles/Login/LoginMedia.css'
 
 function Login() {
-    // const navigate = useNavigate();
 
     return (
         <div class="App">
             <Navbar />
-            <p>Login Test</p>
+            <LoginBox />
             <Footer />
         </div>
     );
