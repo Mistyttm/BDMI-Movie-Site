@@ -161,6 +161,14 @@ div#mobileLinks {
     background-color: #C6B9CD;
 }
 
+div#desktopLinks {
+    display: none;
+    font-family: 'Koulen', cursive;
+    text-align: left;
+    padding: 2%;
+    background-color: #C6B9CD
+}
+
 nav.mobileNav a.icon {
     color: white;
     text-decoration: none;
@@ -189,6 +197,25 @@ nav.navlinks a.icon {
 }
 
 .mobileLink:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+.deskLink:link {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.deskLink:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.deskLink:hover {
+    color: #9C92A3;
+    text-decoration: none;
+}
+
+.deskLink:active {
     color: #ffffff;
     text-decoration: none;
 }
