@@ -12,6 +12,15 @@ function openMobileMenu() {
     }
 }
 
+function openMenu() {
+    let x = document.getElementById("desktopLinks");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+
 function Navbar() {
 
 
@@ -20,7 +29,7 @@ function Navbar() {
             {/* <img src={logo} alt="website logo"/> */}
             <nav className="navlinks">
                 <h1 className="logo"><Link to="/" className="logoLink">BDMI</Link></h1>
-                <a href="javascript:void(0);" className="icon" onClick={openMobileMenu}>
+                <a href="javascript:void(0);" className="icon" onClick={openMenu}>
                     <FontAwesomeIcon icon={faBars} />
                 </a>
                 <form action="/Movies">
@@ -32,6 +41,9 @@ function Navbar() {
                     </li>
                 </ul>
             </nav>
+            <div id="desktopLinks">
+                <h3><Link to="/Movies" className="deskLink">Movies</Link></h3>
+            </div>
             <nav className="mobileNav">
                 <h1 className="logo"><Link to="/" className="logoLink">BDMI</Link></h1>
                 <a href="javascript:void(0);" className="icon" onClick={openMobileMenu}>
