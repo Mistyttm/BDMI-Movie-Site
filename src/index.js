@@ -7,6 +7,7 @@ import Movies from "./pages/Movies";
 import Movie from "./pages/MoviePage";
 import Person from "./pages/Person";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
@@ -22,6 +23,7 @@ root.render(
         <Route path="/MoviePage" element={<Movie />} />
         <Route path="/Person" element={<Person />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
