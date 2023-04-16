@@ -1,23 +1,48 @@
 import { Link } from "react-router-dom";
-import '../Styles/Navbar/navMedia.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+import '../Styles/Navbar/navMedia.css';
+
+function openMobileMenu() {
+    let x = document.getElementById("mobileLinks");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
 
 function Navbar() {
 
 
     return (
-        <div class="navbar-bg">
+        <div className="navbar-bg">
             {/* <img src={logo} alt="website logo"/> */}
-            <nav class="navlinks">
-                <h1 class="logo">BDMI</h1>
-                <form>
-                    <input class="searchBox" type="text" id="globalSearch" name="globalSearch" placeholder="Search" />
+            <nav className="navlinks">
+                <h1 className="logo"><Link to="/" className="logoLink">BDMI</Link></h1>
+                <a href="javascript:void(0);" className="icon" onClick={openMobileMenu}>
+                    <FontAwesomeIcon icon={faBars} />
+                </a>
+                <form action="/Movies">
+                    <input className="searchBox" type="text" id="globalSearch" name="globalSearch" placeholder="Search" />
                 </form>
                 <ul>
                     <li id="login">
-                        <h2><Link to="/Login" class="loginreg">Login/Register</Link></h2>
+                        <h2><Link to="/Login" className="loginreg">Login/Register</Link></h2>
                     </li>
                 </ul>
             </nav>
+            <nav className="mobileNav">
+                <h1 className="logo"><Link to="/" className="logoLink">BDMI</Link></h1>
+                <a href="javascript:void(0);" className="icon" onClick={openMobileMenu}>
+                    <FontAwesomeIcon icon={faBars} />
+                </a>
+            </nav>
+            <div id="mobileLinks">
+                <h3><Link to="/Login" className="mobileLink">Login/Register</Link></h3>
+                <h3><Link to="/Movies" className="mobileLink">Movies</Link></h3>
+            </div>
+            
         </div>
     );
 }

@@ -89,6 +89,26 @@ nav.navlinks li#login{
     text-decoration: none;
 }
 
+.logoLink:link {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.logoLink:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.logoLink:hover {
+    color: #9C92A3;
+    text-decoration: none;
+}
+
+.logoLink:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
 footer.footer-bg {
     font-family: 'Koulen', cursive;
     width: 100%;
@@ -122,6 +142,55 @@ div.extra-text {
     margin: 5em auto 5em auto;
     padding-left: 10%;
     padding-right: 10%;
+}
+
+nav.mobileNav {
+    display: none;
+    background-color: #58C3FF;
+    width: 100%;
+    padding: 1.5em;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div#mobileLinks {
+    display: none;
+    font-family: 'Koulen', cursive;
+    text-align: right;
+    padding: 5%;
+    background-color: #C6B9CD;
+}
+
+nav.mobileNav a.icon {
+    color: white;
+    text-decoration: none;
+    font-size: 180%;
+}
+
+nav.navlinks a.icon {
+    color: white;
+    text-decoration: none;
+    margin-top: .2%;
+    font-size: 230%;
+}
+.mobileLink:link {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.mobileLink:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.mobileLink:hover {
+    color: #9C92A3;
+    text-decoration: none;
+}
+
+.mobileLink:active {
+    color: #ffffff;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 1920px) {
@@ -248,7 +317,10 @@ div.extra-text {
     input.searchBox[type=text] {
         display: none;
     }
-    nav.navlinks li#login {
+    nav.navlinks{
         display: none;
+    }
+    nav.mobileNav {
+        display: flex;
     }
 }
