@@ -49,6 +49,7 @@ input.searchBox[type=text] {
     width: 900px;
     margin: auto;
     margin-top: .4em;
+    margin-right: 7em;
     padding: 10px;
     padding-left: 25px;
     border-radius: 100px;
@@ -177,7 +178,7 @@ nav.mobileNav a.icon {
 nav.navlinks a.icon {
     color: white;
     text-decoration: none;
-    margin-top: .2%;
+    margin-top: .1%;
     font-size: 230%;
 }
 .mobileLink:link {
