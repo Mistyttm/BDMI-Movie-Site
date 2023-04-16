@@ -46,7 +46,6 @@ body{
 }
 
 input.searchBox[type=text] {
-    font-family: 'Koulen', cursive;
     width: 900px;
     margin: auto;
     margin-top: .4em;
