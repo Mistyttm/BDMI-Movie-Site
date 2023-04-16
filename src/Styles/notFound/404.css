@@ -1,0 +1,15 @@
+.errorMessage {
+    font-family: 'Koulen', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.errorMessage h1 {
+    font-size: 15em;
+}
+
+.errorMessage h2 {
+    font-size: 7em;
+}

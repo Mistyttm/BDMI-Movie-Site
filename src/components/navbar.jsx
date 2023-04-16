@@ -42,7 +42,7 @@ function Navbar() {
                 </ul>
             </nav>
             <div id="desktopLinks">
-                <h3><Link to="/Home" className="mobileLink">Home</Link></h3>
+                <h3><Link to="/" className="mobileLink">Home</Link></h3>
                 <h3><Link to="/Movies" className="deskLink">Movies</Link></h3>
             </div>
             <nav className="mobileNav">
@@ -53,7 +53,7 @@ function Navbar() {
             </nav>
             <div id="mobileLinks">
                 <h3><Link to="/Login" className="mobileLink">Login/Register</Link></h3>
-                <h3><Link to="/Home" className="mobileLink">Home</Link></h3>
+                <h3><Link to="/" className="mobileLink">Home</Link></h3>
                 <h3><Link to="/Movies" className="mobileLink">Movies</Link></h3>
             </div>
             

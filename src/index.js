@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import NotFound from "./pages/notFound";
 import App from './App';
 import Movies from "./pages/Movies";
 import Movie from "./pages/MoviePage";
@@ -24,6 +25,7 @@ root.render(
         <Route path="/Person" element={<Person />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
