@@ -1,0 +1,67 @@
+@media screen and (max-width: 1920px) {
+    .loginWrapper {
+        width: 50em;
+    }
+    input.loginEmail[type=text] {
+        width: 530px;
+    }
+    input.loginPassword[type=text] {
+        width: 530px;
+    }
+}
+@media screen and (max-width: 1600px) {
+    .loginWrapper {
+        width: 40em;
+    }
+    input.loginEmail[type=text] {
+        width: 430px;
+    }
+    input.loginPassword[type=text] {
+        width: 430px;
+    }
+}
+@media screen and (max-width: 1300px) {
+    .loginWrapper {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 30em;
+    }
+    input.loginEmail[type=text] {
+        margin-left: 3em;
+        width: 330px;
+    }
+    input.loginPassword[type=text] {
+        margin-left: 3em;
+        width: 330px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .loginWrapper {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 25em;
+    }
+    input.loginEmail[type=text] {
+        margin-left: 1.5em;
+        width: 330px;
+    }
+    input.loginPassword[type=text] {
+        margin-left: 1.5em;
+        width: 330px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .loginWrapper {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 22em;
+    }
+    input.loginEmail[type=text] {
+        margin-left: 1.5em;
+        width: 280px;
+    }
+    input.loginPassword[type=text] {
+        margin-left: 1.5em;
+        width: 280px;
+    }
+}
