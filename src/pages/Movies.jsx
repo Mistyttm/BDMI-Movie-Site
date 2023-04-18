@@ -12,11 +12,6 @@ const sampleFetch = async () => {
     ); // hits the url provided and gets the response with its status code, body, headers, etc.
     const jsonData = await response.json(); // parses the response body to JSON
 
-    console.log(jsonData); // all the data
-    console.log(jsonData.pagination); // prints the value of the property
-    console.log(jsonData.pagination.total);
-    // ... etc
-
     return jsonData.pagination.total;
 };
 
@@ -24,6 +19,7 @@ const GridExample = () => {};
 
 function Movies() {
     const [queryParameters] = useSearchParams();
+    let pageCount = 0;
 
     const containerStyle = useMemo(
         () => ({ width: "100%", height: "100%" }),
@@ -33,9 +29,9 @@ function Movies() {
 
     const [columnDefs, setColumnDefs] = useState([
         // this row shows the row index, doesn't use any data from the row
-        { headerName: "Title", 
-            field: "title", 
-            minWidth: 150, 
+        {
+            headerName: "ID",
+            maxWidth: 100,
             // it is important to have node.id here, so that when the id changes (which happens
             // when the row is loaded) then the cell is refreshed.
             valueGetter: "node.id",
@@ -44,15 +40,16 @@ function Movies() {
                     return props.value;
                 } else {
                     return (
-                        <img src="https://www.ag-grid.com/example-assets/loading.gif" alt="loading" />
+                        <img src="https://www.ag-grid.com/example-assets/loading.gif" />
                     );
                 }
-            }, 
+            },
         },
+        { headerName: "Title", field: "title", minWidth: 150 },
         { headerName: "Year", field: "year" },
         { headerName: "IMDB Rating", field: "imdbRating" },
         { headerName: "Rotten Tomatoes Rating", field: "rottenTomatoesRating" },
-        { headerName: "MetaCritic Rating", field: "metacriticRating"},
+        { headerName: "MetaCritic Rating", field: "metacriticRating" },
         { headerName: "Classification", field: "classification" },
     ]);
     const defaultColDef = useMemo(() => {
@@ -63,27 +60,30 @@ function Movies() {
         };
     }, []);
 
+    
+
     const onGridReady = useCallback((params) => {
         const dataSource = {
             rowCount: undefined,
             getRows: async (params) => {
-                console.log(
-                    'asking for ' + params.startRow + ' to ' + params.endRow
-                );
-                
-                
                 const pageTotal = await sampleFetch();
-                console.log(pageTotal);
+                pageCount += 1;
+
+                let movieValue = "";
+
+                if (queryParameters.get("globalSearch")) {
+                    movieValue = "?title=" + queryParameters.get("globalSearch");
+                } else {
+                    movieValue = "?page=" + pageCount;
+                }
+                console.log(pageCount);
+                fetch("http://sefdb02.qut.edu.au:3000/movies/search" + movieValue)
+                    .then((res) => res.json())
+                    .then((data) => params.successCallback(data.data, -1));
             },
         };
         params.api.setDatasource(dataSource);
     }, []);
-
-    let movieValue = "";
-
-    if (queryParameters.get("globalSearch")) {
-        movieValue = "?title=" + queryParameters.get("globalSearch");
-    }
 
     return (
         <div className="App">
