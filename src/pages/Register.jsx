@@ -8,7 +8,7 @@ import '../Styles/Register/RegisterMedia.css'
 function Register() {
 
     return (
-        <div class="App">
+        <div className="App">
             <Navbar />
             <RegisterBox />
             <Footer />
