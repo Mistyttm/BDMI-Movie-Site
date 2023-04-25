@@ -1,27 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 function RegisterBox() {
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [registerConfPassword, setRegisterConfPassword] = useState("");
+    const [emailError, setEmailError] = useState(null);
+    const [passError, setPassError] = useState(null);
+    const [formError, setFormError] = useState(null);
+    const navigate = useNavigate();
 
     const register = () => {
-        const url = "http://sefdb02.qut.edu.au:3000/user/register";
+        if(setEmailError === null || setPassError === null || registerEmail === "" || registerPassword === "" || registerConfPassword === ""){
+            setFormError("Please fill the form out correctly");
+        } else {
+            setFormError(null);
+            const url = "http://sefdb02.qut.edu.au:3000/user/register";
 
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email: registerEmail, password: registerPassword }),
-        })
-        .then((res) => 
-            res.json().then((res) => {
-                console.log(res);
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: registerEmail, password: registerPassword }),
             })
-        )
-        .catch((error) => console.log(error));
+            .then((res) => 
+                res.json().then((res) => {
+                    console.log(res);
+                    navigate("/Login");
+                })
+            )
+            .catch((error) => console.log(error));
+        }
     };
 
 
@@ -30,7 +42,6 @@ function RegisterBox() {
             <div className="registerBox">
                 <h1 className="loginTitle">Register</h1>
                 <div>
-                    <label htmlFor="registerEmail"></label>
                     <input
                         type="text"
                         className="registerEmail"
@@ -39,9 +50,18 @@ function RegisterBox() {
                         placeholder="Email"
                         value={registerEmail}
                         onChange={(event) => {
-                            setRegisterEmail(event.target.value);
+                            const { value } = event.target;
+                            if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)){
+                                setEmailError(null);
+                            } else {
+                                setEmailError("This is not a valid email");
+                            }
+                            setRegisterEmail(value);
                         }}
                     />
+                    {
+                        emailError != null ? <p className="inputError"><FontAwesomeIcon icon={faCircleExclamation} /> Error: {emailError}</p> : null
+                    }
                     <input
                         type="password"
                         className="registerPassword"
@@ -53,6 +73,7 @@ function RegisterBox() {
                             setRegisterPassword(event.target.value);
                         }}
                     />
+                    
                     <input
                         type="password"
                         className="registerConfPassword"
@@ -61,10 +82,22 @@ function RegisterBox() {
                         placeholder="Confirm Password"
                         value={registerConfPassword}
                         onChange={(event) => {
-                            setRegisterConfPassword(event.target.value);
+                            const { value } = event.target;
+                            if (registerConfPassword === registerPassword){
+                                setPassError("Passwords do not match");
+                            } else {
+                                setPassError(null);
+                            }
+                            setRegisterConfPassword(value);
                         }}
                     />
+                    {
+                        passError != null ? <p className="inputErrorPass"><FontAwesomeIcon icon={faCircleExclamation} /> Error: {passError}</p> : null
+                    }
                     <button id="registerSubmit" onClick={register} >Register Now</button>
+                    {
+                        formError != null ? <p className="formError"><FontAwesomeIcon icon={faCircleExclamation} /> Error: {formError}</p> : null
+                    }
                 </div>
                 <Link to="/Login" className="login">
                     Already have an account? Login here
