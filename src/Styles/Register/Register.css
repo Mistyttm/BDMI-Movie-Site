@@ -63,5 +63,30 @@ input.registerConfPassword[type=password] {
     font-family: 'Koulen', cursive;
     font-size: 1.2em;
     color: #9b9b9b;
-    text-decoration: none;
+    text-decoration: none; 
+}
+
+p.inputError {
+    color: red;
+    float: right;
+    margin-right: 6em;
+    margin-bottom: -2em;
+    margin-top: .5em;
+}
+
+p.formError {
+    position: absolute;
+    color: red;
+    margin-top: .5em;
+    margin-bottom: -2em;
+    margin-top: -1.8em;
+    margin-left: 12em;
+}
+
+p.inputErrorPass {
+    color: red;
+    float: right;
+    margin-right: 6em;
+    margin-bottom: -2em;
+    margin-top: -2.5em;
 }
