@@ -3,8 +3,8 @@ import { AgGridReact } from "ag-grid-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import UrlEncode from "../components/URLEncoder";
 import paginationTotal from "../components/paginationTotal";
+import CountStatusBarComponent from "../components/countStatusBarComponent"
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
@@ -86,6 +86,17 @@ function Movies(props) {
         params.api.setDatasource(dataSource);
     }, []);
 
+    const statusBar = useMemo(() => {
+        return {
+            statusPanels: [
+                {
+                statusPanel: CountStatusBarComponent,
+                },
+            ],  
+        };
+    }, []);
+    
+
     return (
         <div className="App">
             <Navbar />
@@ -105,6 +116,7 @@ function Movies(props) {
                     maxBlocksInCache={10}
                     onGridReady={onGridReady}
                     onRowSelected={onRowSelected}
+                    statusBar={statusBar}
                 />
             </div>
             <Footer />
