@@ -3,8 +3,10 @@ import HeroImg from './components/hero';
 import Footer from './components/footer';
 import './Styles/App.css';
 import './Styles/Navbar/navMedia.css'
+import { useEffect } from 'react';
 
-function App() {
+function App(props) {
+  useEffect(() => {document.title = props.title}, []);
   return (
     <div className="App">
       <Navbar />

@@ -19,13 +19,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/Movies" element={<Movies />} />
+        <Route path="/" element={<App title="Home"/>} />
+        <Route path="/Movies" element={<Movies title="Search Movies" />} />
         <Route path="/MoviePage" element={<Movie />} />
         <Route path="/Person" element={<Person />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/Login" element={<Login title="Login" />} />
+        <Route path="/Register" element={<Register title="Register" />} />
+        <Route path="*" element={<NotFound title="Error: 404"/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

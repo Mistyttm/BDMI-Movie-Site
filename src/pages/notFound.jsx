@@ -1,8 +1,11 @@
+import React, { useEffect } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import '../Styles/notFound/404.css';
 
-function NotFound() {
+function NotFound(props) {
+    useEffect(() => {document.title = props.title}, []);
+
     return (
         <div className="App">
             <Navbar />
