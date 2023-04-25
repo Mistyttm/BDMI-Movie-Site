@@ -1,13 +1,18 @@
 import React from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from '../components/navbar';
 import Footer from "../components/footer";
-// import { useNavigate } from "react-router-dom";
 
 function Movie() {
-    // const navigate = useNavigate();
+    const [queryParameters] = useSearchParams();
+
+    const navigate = useNavigate();
+    console.log();
+    useEffect(() => {document.title = queryParameters.get("m")}, []);
 
     return (
-        <div class="App">
+        <div className="App">
             <Navbar />
             <p>Movie Test</p>
             <Footer />
