@@ -1,24 +1,21 @@
-import { React, useCallback, useMemo, useState } from "react";
+import { React, useCallback, useMemo, useState, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import UrlEncode from "../components/URLEncoder";
+import paginationTotal from "../components/paginationTotal";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-const sampleFetch = async () => {
-    const response = await fetch(
-        "http://sefdb02.qut.edu.au:3000/movies/search"
-    ); // hits the url provided and gets the response with its status code, body, headers, etc.
-    const jsonData = await response.json(); // parses the response body to JSON
 
-    return jsonData.pagination.total;
-};
 
 const GridExample = () => {};
 
-function Movies() {
+function Movies(props) {
+    useEffect(() => {document.title = props.title}, []);
     const [queryParameters] = useSearchParams();
+    const navigate = useNavigate();
     let pageCount = 0;
 
     const containerStyle = useMemo(
@@ -51,6 +48,7 @@ function Movies() {
         { headerName: "Rotten Tomatoes Rating", field: "rottenTomatoesRating", maxWidth: 200, resizable: false },
         { headerName: "MetaCritic Rating", field: "metacriticRating", maxWidth: 150, resizable: false },
         { headerName: "Classification", field: "classification", maxWidth: 130, resizable: false },
+        { headerName: "IMDB ID", field: "imdbID", hide: true},
     ]);
     const defaultColDef = useMemo(() => {
         return {
@@ -61,21 +59,21 @@ function Movies() {
     }, []);
 
     const onRowSelected = useCallback((event) => {
-        console.log('rowData:')
-        console.log(event.data.title)
+        navigate("/MoviePage?m=" + event.data.imdbID)
     }, []);
 
     const onGridReady = useCallback((params) => {
         const dataSource = {
             rowCount: undefined,
             getRows: async (params) => {
-                const pageTotal = await sampleFetch();
+                const pageTotal = await paginationTotal();
                 pageCount += 1;
 
                 let movieValue = "";
 
                 if (queryParameters.get("globalSearch")) {
                     movieValue = "?title=" + queryParameters.get("globalSearch");
+                    console.log(queryParameters.get("globalSearch"));
                 } else {
                     movieValue = "?page=" + pageCount;
                 }
