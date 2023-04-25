@@ -1,0 +1,11 @@
+.gridContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p.requestError {
+    color: red;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
