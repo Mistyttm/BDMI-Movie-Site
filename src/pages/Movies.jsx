@@ -45,12 +45,12 @@ function Movies() {
                 }
             },
         },
-        { headerName: "Title", field: "title", minWidth: 150 },
-        { headerName: "Year", field: "year" },
-        { headerName: "IMDB Rating", field: "imdbRating" },
-        { headerName: "Rotten Tomatoes Rating", field: "rottenTomatoesRating" },
-        { headerName: "MetaCritic Rating", field: "metacriticRating" },
-        { headerName: "Classification", field: "classification" },
+        { headerName: "Title", field: "title", minWidth: 150, maxWidth: 400, resizable: true },
+        { headerName: "Year", field: "year", maxWidth: 100, resizable: false },
+        { headerName: "IMDB Rating", field: "imdbRating", maxWidth: 130, resizable: false },
+        { headerName: "Rotten Tomatoes Rating", field: "rottenTomatoesRating", maxWidth: 200, resizable: false },
+        { headerName: "MetaCritic Rating", field: "metacriticRating", maxWidth: 150, resizable: false },
+        { headerName: "Classification", field: "classification", maxWidth: 130, resizable: false },
     ]);
     const defaultColDef = useMemo(() => {
         return {
@@ -60,7 +60,10 @@ function Movies() {
         };
     }, []);
 
-    
+    const onRowSelected = useCallback((event) => {
+        console.log('rowData:')
+        console.log(event.data.title)
+    }, []);
 
     const onGridReady = useCallback((params) => {
         const dataSource = {
@@ -103,6 +106,7 @@ function Movies() {
                     infiniteInitialRowCount={1000}
                     maxBlocksInCache={10}
                     onGridReady={onGridReady}
+                    onRowSelected={onRowSelected}
                 />
             </div>
             <Footer />
