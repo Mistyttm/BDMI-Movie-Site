@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { React, useCallback, useMemo, useState, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
@@ -9,8 +10,6 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 
-
-const GridExample = () => {};
 
 function Movies(props) {
     useEffect(() => {document.title = props.title}, []);
@@ -73,11 +72,9 @@ function Movies(props) {
 
                 if (queryParameters.get("globalSearch")) {
                     movieValue = "?title=" + queryParameters.get("globalSearch");
-                    console.log(queryParameters.get("globalSearch"));
                 } else {
                     movieValue = "?page=" + pageCount;
                 }
-                console.log(pageCount);
                 fetch("http://sefdb02.qut.edu.au:3000/movies/search" + movieValue)
                     .then((res) => res.json())
                     .then((data) => params.successCallback(data.data, -1));
