@@ -12,7 +12,7 @@ export default (props) => {
     return (
         <div className="ag-status-name-value">
         <span className="component">Row Count Component&nbsp;</span>
-        <span className="ag-status-name-value-value">{paginationTotal}</span>
+        <span className="ag-status-name-value-value">{count}</span>
         </div>
     );
 };
