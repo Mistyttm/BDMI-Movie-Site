@@ -1,37 +1,8 @@
 function Critic(props) {
-    let badgeClass = "badge0"; // Initialize badgeClass to "badge0"
+    // Get the badge class based on the source and value props
+    const badgeClass = getBadgeClass(props.source, props.value);
 
-    // Check if the value prop is not 0
-    if (props.value !== 0) {
-        // Determine badgeClass based on source and value props
-        if (props.source === "Internet Movie Database") {
-            if (props.value <= 3) {
-                badgeClass = "badge1";
-            } else if (props.value <= 8) {
-                badgeClass = "badge2";
-            } else {
-                badgeClass = "badge3";
-            }
-        } else if (props.source === "Rotten Tomatoes") {
-            if (props.value <= 25) {
-                badgeClass = "badge1";
-            } else if (props.value <= 50) {
-                badgeClass = "badge2";
-            } else {
-                badgeClass = "badge3";
-            }
-        } else if (props.source === "Metacritic") {
-            if (props.value <= 40) {
-                badgeClass = "badge1";
-            } else if (props.value <= 75) {
-                badgeClass = "badge2";
-            } else {
-                badgeClass = "badge3";
-            }
-        }
-    }
-
-    // Render the component with appropriate badgeClass and source prop
+    // Render the badge with the source and value props, along with the badge class
     return (
         <div className={props.source}>
             <p>
@@ -42,6 +13,58 @@ function Critic(props) {
             </p>
         </div>
     );
+}
+
+// Function to get the badge class based on the source and value props
+function getBadgeClass(source, value) {
+    // If the value is 0, return the "badge0" class
+    if (value === 0) {
+        return "badge0";
+    }
+
+    // Otherwise, determine the appropriate badge class based on the source
+    switch (source) {
+        case "Internet Movie Database":
+            return getIMDBBadgeClass(value);
+        case "Rotten Tomatoes":
+            return getRottenTomatoesBadgeClass(value);
+        case "Metacritic":
+            return getMetacriticBadgeClass(value);
+        // If the source is not recognized, return the "badge0" class
+        default:
+            return "badge0";
+    }
+}
+
+// Functions to determine the badge class based on the value for each source
+function getIMDBBadgeClass(value) {
+    if (value <= 3) {
+        return "badge1";
+    } else if (value <= 8) {
+        return "badge2";
+    } else {
+        return "badge3";
+    }
+}
+
+function getRottenTomatoesBadgeClass(value) {
+    if (value <= 25) {
+        return "badge1";
+    } else if (value <= 50) {
+        return "badge2";
+    } else {
+        return "badge3";
+    }
+}
+
+function getMetacriticBadgeClass(value) {
+    if (value <= 40) {
+        return "badge1";
+    } else if (value <= 75) {
+        return "badge2";
+    } else {
+        return "badge3";
+    }
 }
 
 export default Critic;
