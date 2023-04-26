@@ -2,22 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import Critic from "../components/criticList";
+import getApiData from "../apis/individualMovieApiCalls";
+import { tempData } from "../components/dummyData";
 import "../Styles/Movies/IndividualMovie.css";
-
-const tempData = {
-    title: "Loading",
-    year: 0,
-    runtime: 0,
-    genres: ["Loading"],
-    country: "Loading",
-    principals: [
-        { id: "Loading", category: "Loading", name: "Loading", characters: [] },
-    ],
-    ratings: [{ source: "Loading", value: 0 }],
-    boxoffice: null,
-    poster: "www.emptyurl.com/image.jpg",
-    plot: "Loading",
-};
 
 function Movie() {
     const [queryParameters] = useSearchParams();
@@ -27,14 +15,8 @@ function Movie() {
 
     const [movieData, setMovieData] = useState(tempData);
 
-    const getApiData = async () => {
-        const response = await fetch(apiURL)
-            .then((response) => response.json())
-            .then((response) => setMovieData(response));
-    };
-
     useEffect(() => {
-        getApiData();
+        getApiData(apiURL, setMovieData);
     }, []);
 
     const navigate = useNavigate();
@@ -43,7 +25,6 @@ function Movie() {
     }, [movieData]);
 
     const moviePoster = "Poster for" + movieData.title;
-    console.log(movieData.ratings[0].source);
 
     return (
         <div className="App">
@@ -52,15 +33,25 @@ function Movie() {
                 <h1 className="movieTitle">{movieData.title}</h1>
                 <div className="movieContainer">
                     <div className="textContainer">
-                        <p>{movieData.plot}</p>
-                        <p>Release Date: {movieData.year}</p>
-                        <p>Runtime: {movieData.runtime} minutes</p>
-                        <p>Release Countries: {movieData.country}</p>
+                        <div className="plot">
+                            <p><b className="titler">Plot</b>: {movieData.plot}</p>
+                        </div>
+                        <div className="mainText">
+                            <p><b className="titler">Release Date</b>: {movieData.year}</p>
+                            <p><b className="titler">Runtime</b>: {movieData.runtime} minutes</p>
+                            <p><b className="titler">Release Countries</b>: {movieData.country}</p>
+                        </div>
+                        <div className="criticVariable">
+                            {movieData.ratings.map((criticData) => (
+                                <Critic key={queryParameters.get("m") + criticData.source} source={criticData.source} value={criticData.value} />
+                            ))}
+                        </div>
                     </div>
                     <div className="imgContainer">
                         <img
                             src={movieData.poster}
                             alt={moviePoster}
+                            className="poster"
                             width="400"
                         />
                     </div>
