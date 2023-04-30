@@ -1,32 +1,52 @@
-div.movieWrapper {
+/* Styles for movie wrapper */
+.movieWrapper {
     display: flex;
     flex-direction: column;
     padding: 3em;
 }
-
-div.movieWrapper h1.movieTitle {
+.movieWrapper h1.movieTitle {
     align-self: center;
     font-family: 'Koulen', cursive;
 }
+.movieWrapper div.movieInfoTable {
+    align-self: center;
+}
 
-div.movieContainer {
+/* Styles for movie container */
+.movieContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 45em;
+    height: 55em;
 }
 
+/* Styles for genre list */
+.genreList {
+    margin-left: 1em;
+}
+ul.genreList li {
+    margin-left: -1em;
+}
+
+/* Styles for movie title */
 b.titler {
     font-size: 1.3em;
     font-family: 'Koulen', cursive;
 }
 
+/* Styles for movie genres */
+.genre {
+    margin-bottom: -10em;
+}
+
+/* Styles for movie poster */
 .poster {
     border-radius: 20px;
     align-self: center;
     margin-top: 1.5em;
 }
 
+/* Styles for text container */
 div.textContainer {
     margin-right: 2em;
     max-width: 25%;
@@ -35,18 +55,21 @@ div.textContainer {
     justify-content: space-evenly;
 }
 
+/* Styles for movie plot */
 div.plot {
     background-color: #0B3142;
     border-radius: 20px;
     padding: 1.5em;
 }
 
+/* Styles for main text */
 div.mainText {
     background-color: #0B3142;
     border-radius: 20px;
     padding: 1.5em;
 }
 
+/* Styles for critic variables */
 div.criticVariable {
     background-color: #0B3142;
     border-radius: 20px;
@@ -56,31 +79,26 @@ div.criticVariable {
     justify-content: space-between;
 }
 
-div.badge2 {
-    background-color: rgb(151, 151, 24);
+/* Styles for different badges */
+div.badge0, div.badge1, div.badge2, div.badge3, div.badge4 {
     text-align: center;
     width: 15%;
     font-size: 1.5em;
     border-radius: 20px;
+}
+
+div.badge0 {
+    background-color: rgb(73, 73, 73);
 }
 div.badge1 {
     background-color: rgb(151, 24, 24);
-    text-align: center;
-    width: 15%;
-    font-size: 1.5em;
-    border-radius: 20px;
+}
+div.badge2 {
+    background-color: rgb(151, 151, 24);
 }
 div.badge3 {
     background-color: rgb(26, 148, 73);
-    text-align: center;
-    width: 15%;
-    font-size: 1.5em;
-    border-radius: 20px;
 }
-div.badge0 {
-    background-color: rgb(73, 73, 73);
-    text-align: center;
-    width: 15%;
-    font-size: 1.5em;
-    border-radius: 20px;
+div.badge4 {
+    background-color: #d6a212;
 }

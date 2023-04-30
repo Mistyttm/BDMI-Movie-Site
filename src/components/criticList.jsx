@@ -1,18 +1,29 @@
 function Critic(props) {
     // Get the badge class based on the source and value props
-    const badgeClass = getBadgeClass(props.source, props.value);
+    let badgeClass;
+    if (props.source === "Internet Movie Database" && props.value === 10) {
+        badgeClass = "badge4";
+    } else if (props.source === "Rotten Tomatoes" && props.value === 100) {
+        badgeClass = "badge4";
+    } else if (props.source === "Metacritic" && props.value === 100) {
+        badgeClass = "badge4";
+    } else {
+        badgeClass = getBadgeClass(props.source, props.value);
+    }
 
     // Render the badge with the source and value props, along with the badge class
-    return (
-        <div className={props.source}>
-            <p>
-                <b className="titler">{props.source}</b>:{" "}
-                <div className={badgeClass}>
-                    <p>{props.value}</p>
+    if (props.value !== null){
+        return (
+            <div className={props.source}>
+                <div>
+                    <b className="titler">{props.source}</b>:{" "}
+                    <div className={badgeClass}>
+                        <p>{props.value}</p>
+                    </div>
                 </div>
-            </p>
-        </div>
-    );
+            </div>
+        );
+    }
 }
 
 // Function to get the badge class based on the source and value props
