@@ -1,10 +1,10 @@
 .loginWrapper {
-    background-color: #0B3142;
+    background-color: #0b3142;
     width: 50em;
     margin: auto;
-    height: 35em;
+    height: 40em;
     border-radius: 50px;
-    padding: 3%
+    padding: 3%;
 }
 
 .loginBox {
@@ -14,21 +14,19 @@
 }
 
 h1.loginTitle {
-    font-family: 'Koulen', cursive;
+    font-family: "Koulen", cursive;
     font-size: 5em;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
 }
 
-input.loginEmail[type=text] {
-    margin-left: 4.5em;
+input.loginEmail[type="text"] {
     width: 530px;
     border: none;
     padding: 10px;
     border-radius: 100px;
 }
 
-input.loginPassword[type=text] {
-    margin-left: 4.5em;
+input.loginPassword[type="password"] {
     margin-top: 3em;
     margin-bottom: 3em;
     width: 530px;
@@ -36,11 +34,24 @@ input.loginPassword[type=text] {
     padding: 10px;
     border-radius: 100px;
 }
+input.loginExpiry[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    margin-right: 1em;
+}
 
-input#loginSubmit[type=submit] {
-    font-family: 'Koulen', cursive;
+p.checkP {
+    font-family: "Koulen", cursive;
+    font-size: 2em;
+    align-self: flex-start;
+    padding-left: 2.5em;
+    padding-bottom: .5em;
+}
+
+button#loginSubmit {
+    font-family: "Koulen", cursive;
     font-size: 1.5em;
-    display:flex;
+    display: flex;
     margin: auto;
     border: none;
     padding: 10px 30px 10px 30px;
@@ -51,8 +62,13 @@ input#loginSubmit[type=submit] {
 }
 
 .register {
-    font-family: 'Koulen', cursive;
+    font-family: "Koulen", cursive;
     font-size: 1.2em;
     color: #9b9b9b;
     text-decoration: none;
+}
+
+p.error {
+    color: red;
+    margin-top: -1em;
 }
