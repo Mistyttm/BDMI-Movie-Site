@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import checkToken from "../apis/tokenRefresh";
 import "../Styles/Navbar/navMedia.css";
 
 function Navbar() {
     const [desktopLinksVisible, setDesktopLinksVisible] = useState(false);
     const [mobileLinksVisible, setMobileLinksVisible] = useState(false);
+    const [ableLogout, setAbleLogout] = useState(false);
+
+    useEffect(() => {
+        checkToken(setAbleLogout);
+    }, []);
 
     function toggleDesktopLinks() {
         setDesktopLinksVisible(!desktopLinksVisible);
@@ -14,6 +20,12 @@ function Navbar() {
 
     function toggleMobileLinks() {
         setMobileLinksVisible(!mobileLinksVisible);
+    }
+
+    function logout() {
+        localStorage.removeItem("bearerToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("timeOfCreation");
     }
 
     return (
@@ -45,9 +57,21 @@ function Navbar() {
                 <ul>
                     <li id="login">
                         <h2>
-                            <Link to="/Login" className="loginreg">
-                                Login/Register
-                            </Link>
+                            {!ableLogout && (
+                                <Link to="/Login" className="loginreg">
+                                    Login/Register
+                                </Link>
+                            )}
+                            {ableLogout && (
+                                <a
+                                    className="loginreg"
+                                    href="/"
+                                    onClick={(e) => {
+                                        logout();
+                                    }}>
+                                    Logout
+                                </a>
+                            )}
                         </h2>
                     </li>
                 </ul>

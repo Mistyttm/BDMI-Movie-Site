@@ -9,7 +9,7 @@ import '../Styles/Login/LoginMedia.css'
 function Login(props) {
     useEffect(() => {document.title = props.title}, []);
     return (
-        <div class="App">
+        <div className="App">
             <Navbar />
             <LoginBox />
             <Footer />
