@@ -5,7 +5,7 @@ import './index.css';
 import NotFound from "./pages/notFound";
 import App from './App';
 import Movies from "./pages/Movies";
-import Movie from "./pages/MoviePage";
+import MoviePage from "./pages/MoviePage";
 import Person from "./pages/Person";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -21,7 +21,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App title="Home"/>} />
         <Route path="/Movies" element={<Movies title="Search Movies" />} />
-        <Route path="/MoviePage" element={<Movie />} />
+        <Route path="/MoviePage" element={<MoviePage />} />
         <Route path="/Person" element={<Person />} />
         <Route path="/Login" element={<Login title="Login" />} />
         <Route path="/Register" element={<Register title="Register" />} />
