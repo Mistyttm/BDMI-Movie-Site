@@ -26,7 +26,7 @@ function Movie() {
     // Call the API and update movieData state on component mount
     useEffect(() => {
         getApiData(apiURL, setMovieData);
-    }, []);
+    }, [apiURL, setMovieData]);
 
     // Update the document title with the movie title
     useEffect(() => {
