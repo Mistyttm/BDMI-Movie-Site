@@ -23,6 +23,9 @@ function LoginBox() {
         setFormData((prevFormData) => ({ ...prevFormData, [name]: newValue }));
     };
 
+    // Setting the current date and time for proper expiry
+    let date = new Date().getTime();
+
     // Defining a function to handle the form submission and login request
     const handleLogin = async () => {
         try {
@@ -44,8 +47,12 @@ function LoginBox() {
                     JSON.stringify(data.bearerToken)
                 );
                 localStorage.setItem(
-                    "refeshToken",
+                    "refreshToken",
                     JSON.stringify(data.refreshToken)
+                );
+                localStorage.setItem(
+                    "timeOfCreation",
+                    JSON.stringify(date)
                 );
                 navigate("/");
             } else {

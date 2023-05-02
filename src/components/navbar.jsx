@@ -1,12 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import refresh from "../apis/tokenRefresh";
 import "../Styles/Navbar/navMedia.css";
 
 function Navbar() {
     const [desktopLinksVisible, setDesktopLinksVisible] = useState(false);
     const [mobileLinksVisible, setMobileLinksVisible] = useState(false);
+    const [ableLogout, setAbleLogout] = useState(false);
+
+    useEffect(() => {
+        let date = new Date().getTime();
+        let bearerToken = JSON.parse(localStorage.getItem("bearerToken"));
+        let refreshToken = JSON.parse(localStorage.getItem("refreshToken"));
+        let time = JSON.parse(localStorage.getItem("timeOfCreation"));
+
+        if (bearerToken !== null || refreshToken !== null || time !== null) {
+            console.log(time);
+            console.log(date - time);
+            if (date - time > bearerToken.expires_in) {
+                try {
+                    setAbleLogout(refresh(refreshToken.token));
+                } catch (error) {
+                    console.log("Caught");
+                    setAbleLogout(false);
+                }
+            }
+        }
+    }, []);
 
     function toggleDesktopLinks() {
         setDesktopLinksVisible(!desktopLinksVisible);
@@ -14,6 +36,12 @@ function Navbar() {
 
     function toggleMobileLinks() {
         setMobileLinksVisible(!mobileLinksVisible);
+    }
+
+    function logout() {
+        localStorage.removeItem("bearerToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("timeOfCreation");
     }
 
     return (
@@ -45,9 +73,22 @@ function Navbar() {
                 <ul>
                     <li id="login">
                         <h2>
-                            <Link to="/Login" className="loginreg">
-                                Login/Register
-                            </Link>
+                            {!ableLogout && (
+                                <Link to="/Login" className="loginreg">
+                                    Login/Register
+                                </Link>
+                            )}
+                            {ableLogout && (
+                                <a
+                                    className="loginreg"
+                                    href="/"
+                                    onClick={(e) => {
+                                        // e.preventDefault();
+                                        logout();
+                                    }}>
+                                    Logout
+                                </a>
+                            )}
                         </h2>
                     </li>
                 </ul>
