@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import refresh from "../apis/tokenRefresh";
+import checkToken from "../apis/tokenRefresh";
 import "../Styles/Navbar/navMedia.css";
 
 function Navbar() {
@@ -11,23 +12,7 @@ function Navbar() {
     const [ableLogout, setAbleLogout] = useState(false);
 
     useEffect(() => {
-        let date = new Date().getTime();
-        let bearerToken = JSON.parse(localStorage.getItem("bearerToken"));
-        let refreshToken = JSON.parse(localStorage.getItem("refreshToken"));
-        let time = JSON.parse(localStorage.getItem("timeOfCreation"));
-
-        if (bearerToken !== null || refreshToken !== null || time !== null) {
-            console.log(time);
-            console.log(date - time);
-            if (date - time > bearerToken.expires_in) {
-                try {
-                    setAbleLogout(refresh(refreshToken.token));
-                } catch (error) {
-                    console.log("Caught");
-                    setAbleLogout(false);
-                }
-            }
-        }
+        checkToken(setAbleLogout);
     }, []);
 
     function toggleDesktopLinks() {
@@ -83,7 +68,6 @@ function Navbar() {
                                     className="loginreg"
                                     href="/"
                                     onClick={(e) => {
-                                        // e.preventDefault();
                                         logout();
                                     }}>
                                     Logout
