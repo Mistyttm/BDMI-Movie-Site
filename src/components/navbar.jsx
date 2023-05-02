@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import refresh from "../apis/tokenRefresh";
 import checkToken from "../apis/tokenRefresh";
 import "../Styles/Navbar/navMedia.css";
 
