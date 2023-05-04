@@ -1,33 +1,30 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useSearchParams, useNavigate, Link } from "react-router-dom";
+import React, { useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { tempDataPerson } from "./dummyData";
-import getApiData from "../apis/individualPersonApiCalls";
-
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
-
+// Component that is displayed when the user is unauthorized
 function UnautorisedPerson() {
     const navigate = useNavigate();
 
-    const navToLogin = (() => {
+    // Function to navigate to the login page
+    const navToLogin = useCallback(() => {
         let path = `/Login`;
         navigate(path);
-    });
+    }, [navigate]);
 
+    // Sets the document title to "Oops, Please login" when the component mounts
     useEffect(() => {
         document.title = "Oops, Please login";
     }, []);
 
+    // Render the component
     return (
         <div className="pageWrapper">
             <div className="personWrapperLogout">
-                {/* <div className="textWrapper"> */}
-                    <h1>Oops, looks like you've been logged out</h1>
-                    <h2>Please login and try again</h2>
-                {/* </div> */}
-                <button id="login" onClick={event => navToLogin()}>Login</button>
+                <h1>Oops, looks like you've been logged out</h1>
+                <h2>Please login and try again</h2>
+                <button id="login" onClick={navToLogin}>
+                    Login
+                </button>
             </div>
         </div>
     );
