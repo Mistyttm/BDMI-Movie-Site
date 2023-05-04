@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import Navbar from '../components/navbar';
+import Person from "../components/person";
 import Footer from "../components/footer";
 
-function Person() {
-    useEffect(() => {document.title = "TestTitle"}, []);
-
+function PersonPage() {
+    
     return (
-        <div class="App">
+        <div className="App">
             <Navbar />
-            <p>Person Test</p>
+            <Person />
             <Footer />
         </div>
     );
 }
 
-export default Person;
+export default PersonPage;

@@ -1,4 +1,4 @@
-export const tempData = {
+export const tempDataMovie = {
     title: "Loading",
     year: 0,
     runtime: 0,
@@ -11,4 +11,11 @@ export const tempData = {
     boxoffice: null,
     poster: "www.emptyurl.com/image.jpg",
     plot: "Loading",
+};
+
+export const tempDataPerson = {
+    name: "Loading",
+    birthYear: null,
+    deathYear: null,
+    roles: [{ movieName: "Loading", movieID: "Loading", category: "Loading", characters: [], imdbRating: null }],
 };

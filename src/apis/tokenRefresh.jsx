@@ -53,8 +53,12 @@ export default async function checkToken(setAbleLogout) {
             setAbleLogout(await refresh(refreshToken.token));
         } catch (error) {
             // Log an error message and set the state of the ability to logout to false if an error occurs.
-            console.log("Caught");
+            console.log(error);
             setAbleLogout(false);
+            alert("You have been logged out due to inactivity")
+            localStorage.removeItem("bearerToken");
+            localStorage.removeItem("refreshToken");
+            localStorage.removeItem("timeOfCreation");
         }
     }
 }
