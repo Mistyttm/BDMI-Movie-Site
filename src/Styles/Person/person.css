@@ -1,0 +1,42 @@
+.pageWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5em;
+}
+
+.personWrapperLogout{
+    background-color: #0B3142;
+    height: 40em;
+    width: 50em;
+    border-radius: 2em;
+    text-align: center;
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-family: 'Koulen', cursive;
+}
+
+.textWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button#login {
+    font-family: "Koulen", cursive;
+    font-size: 1.5em;
+    border: none;
+    padding: 10px 30px 10px 30px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #fff;
+    transition: 0.1s;
+}
+
+button#login:hover {
+    background-color: #afafaf;
+}

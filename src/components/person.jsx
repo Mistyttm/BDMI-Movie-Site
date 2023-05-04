@@ -86,22 +86,24 @@ function Person() {
     );
 
     return (
-        <div className="personWrapper">
-            <h1>{personData.name}</h1>
-            <h2>
-                {personData.birthYear} - {personData.deathyear}
-            </h2>
-            <div className="personCharacters">
-                <div
-                    className="movieInfoTable ag-theme-alpine"
-                    style={{ height: "300px", width: "930px" }}>
-                    <AgGridReact
-                        rowSelection={"single"}
-                        onRowSelected={rowSelected}
-                        columnDefs={columns}
-                        rowData={rowData}
-                        onGridReady={onGridReady}
-                    />
+        <div className="pageWrapper">
+            <div className="personWrapper">
+                <h1>{personData.name}</h1>
+                <h2>
+                    {personData.birthYear} - {personData.deathyear}
+                </h2>
+                <div className="personCharacters">
+                    <div
+                        className="movieInfoTable ag-theme-alpine"
+                        style={{ height: "300px", width: "930px" }}>
+                        <AgGridReact
+                            rowSelection={"single"}
+                            onRowSelected={rowSelected}
+                            columnDefs={columns}
+                            rowData={rowData}
+                            onGridReady={onGridReady}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
