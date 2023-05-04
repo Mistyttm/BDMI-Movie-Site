@@ -56,5 +56,14 @@ export default async function checkToken(setAbleLogout) {
             console.log("Caught");
             setAbleLogout(false);
         }
+    } else if (
+        bearerToken?.expires_in &&
+        refreshToken?.token &&
+        time &&
+        date - time < bearerToken.expires_in
+    ) {
+        setAbleLogout(true);
+    } else {
+        setAbleLogout(false);
     }
 }

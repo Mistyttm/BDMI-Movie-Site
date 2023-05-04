@@ -10,7 +10,7 @@ function LoginBox() {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-        expiry: false,
+        longExpiry: false,
     });
     const [loginError, setLoginError] = useState(null);
     const navigate = useNavigate();
@@ -50,10 +50,7 @@ function LoginBox() {
                     "refreshToken",
                     JSON.stringify(data.refreshToken)
                 );
-                localStorage.setItem(
-                    "timeOfCreation",
-                    JSON.stringify(date)
-                );
+                localStorage.setItem("timeOfCreation", JSON.stringify(date));
                 navigate("/");
             } else {
                 // If a bearer token is not received, set the login error to the error message returned by the API
@@ -89,7 +86,7 @@ function LoginBox() {
                 <p className="checkP">
                     <input
                         type="checkbox"
-                        name="expiry"
+                        name="longExpiry"
                         className="loginExpiry"
                         checked={formData.expiry}
                         onChange={handleInputChange}
