@@ -8,7 +8,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import Critic from "../components/criticList";
 import Genre from "../components/genreList";
 import getApiData from "../apis/individualMovieApiCalls";
-import { tempData } from "../components/dummyData";
+import { tempDataMovie } from "../components/dummyData";
 import "../Styles/Movies/IndividualMovie.css";
 
 function Movie() {
@@ -21,7 +21,7 @@ function Movie() {
         queryParameters.get("m");
 
     // Store the data returned by the API in movieData state
-    const [movieData, setMovieData] = useState(tempData);
+    const [movieData, setMovieData] = useState(tempDataMovie);
 
     // Call the API and update movieData state on component mount
     useEffect(() => {
