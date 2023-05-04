@@ -20,7 +20,7 @@ function UnautorisedPerson() {
     return (
         <div className="pageWrapper">
             <div className="personWrapperLogout">
-                <h1>Oops, looks like you've been logged out</h1>
+                <h1>Oops, looks like you're not logged in</h1>
                 <h2>Please login and try again</h2>
                 <button id="login" onClick={navToLogin}>
                     Login
