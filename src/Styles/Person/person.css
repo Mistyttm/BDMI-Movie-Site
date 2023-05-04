@@ -19,6 +19,20 @@
     font-family: 'Koulen', cursive;
 }
 
+.personWrapper{
+    background-color: #0B3142;
+    /* height: 40em; */
+    width: 70em;
+    border-radius: 2em;
+    text-align: center;
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-family: 'Koulen', cursive;
+}
+
 .textWrapper{
     display: flex;
     flex-direction: column;
