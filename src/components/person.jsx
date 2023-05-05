@@ -149,7 +149,7 @@ function Person() {
             <div className="graphWrapper">
                 <div className="barChart">
                     <h2>Ratings at a Glance</h2>
-                    <BarChart width={730} height={250} data={data}>
+                    <BarChart width={730} height={250} data={data} className="Graph">
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="amount" />
                         <YAxis />

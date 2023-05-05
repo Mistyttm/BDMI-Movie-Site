@@ -73,3 +73,7 @@ button#login {
 button#login:hover {
     background-color: #afafaf;
 }
+
+.Graph{
+    margin-left: -2em;
+}
