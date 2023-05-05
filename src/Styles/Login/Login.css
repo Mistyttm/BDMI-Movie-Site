@@ -59,6 +59,11 @@ button#loginSubmit {
     cursor: pointer;
     background-color: #fff;
     margin-bottom: 1.5em;
+    transition: 0.s;
+}
+
+button#loginSubmit:hover {
+    background-color: #afafaf;
 }
 
 .register {

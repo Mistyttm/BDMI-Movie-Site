@@ -4,7 +4,6 @@ import { AgGridReact } from "ag-grid-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import paginationTotal from "../components/paginationTotal";
 import CountStatusBarComponent from "../components/countStatusBarComponent";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -15,19 +14,13 @@ import "../Styles/Movies/Movies.css";
 function Movies(props) {
     useEffect(() => {
         document.title = props.title;
-    }, []);
+    });
     const [queryParameters] = useSearchParams();
     const [requestError, setRequestError] = useState(null);
     const navigate = useNavigate();
     let pageCount = 0;
 
-    const containerStyle = useMemo(
-        () => ({ width: "100%", height: "100%" }),
-        []
-    );
-    const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
-
-    const [columnDefs, setColumnDefs] = useState([
+    const columnDefs = [
         {
             headerName: "Title",
             field: "title",
@@ -70,7 +63,7 @@ function Movies(props) {
             resizable: false,
         },
         { headerName: "IMDB ID", field: "imdbID", hide: true },
-    ]);
+    ];
     const defaultColDef = useMemo(() => {
         return {
             flex: 1,
@@ -87,7 +80,6 @@ function Movies(props) {
         const dataSource = {
             rowCount: undefined,
             getRows: async (params) => {
-                //const pageTotal = await paginationTotal();
                 pageCount += 1;
 
                 let movieValue = "";
