@@ -130,7 +130,7 @@ function Person() {
             <div className="personWrapper">
                 <h1>{personData.name}</h1>
                 <h2>
-                    {personData.birthYear} - {personData.deathyear}
+                    {personData.birthYear} - {personData.deathYear}
                 </h2>
                 <div className="personCharacters">
                     <div

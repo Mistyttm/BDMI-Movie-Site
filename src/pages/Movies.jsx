@@ -72,9 +72,12 @@ function Movies(props) {
         };
     }, []);
 
-    const onRowSelected = useCallback((event) => {
-        navigate("/MoviePage?m=" + event.data.imdbID);
-    }, [navigate]);
+    const onRowSelected = useCallback(
+        (event) => {
+            navigate("/MoviePage?m=" + event.data.imdbID);
+        },
+        [navigate]
+    );
 
     const onGridReady = useCallback((params) => {
         const dataSource = {

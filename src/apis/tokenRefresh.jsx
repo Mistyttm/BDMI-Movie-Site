@@ -20,13 +20,11 @@ export const refresh = async (token) => {
         if (data.error) {
             throw new Error(data.message);
         }
+        let time = new Date().getTime();
         // If the token was successfully refreshed, store the new tokens and the time of creation in local storage
         localStorage.setItem("bearerToken", JSON.stringify(data.bearerToken));
         localStorage.setItem("refreshToken", JSON.stringify(data.refreshToken));
-        localStorage.setItem(
-            "timeOfCreation",
-            JSON.stringify(new Date().getTime())
-        );
+        localStorage.setItem("timeOfCreation", JSON.stringify(Math.floor(time / 1000)));
         return true;
     } catch (error) {
         // If an error occurred, throw an error with the message
@@ -36,7 +34,8 @@ export const refresh = async (token) => {
 
 export default async function checkToken(setAbleLogout) {
     // Get the current time, bearer token, refresh token, and time of creation from localStorage.
-    const date = new Date().getTime();
+    let date = new Date().getTime();
+    date = Math.floor(date / 1000);
     const bearerToken = JSON.parse(localStorage.getItem("bearerToken"));
     const refreshToken = JSON.parse(localStorage.getItem("refreshToken"));
     const time = JSON.parse(localStorage.getItem("timeOfCreation"));
@@ -55,7 +54,6 @@ export default async function checkToken(setAbleLogout) {
             // Log an error message and set the state of the ability to logout to false if an error occurs.
             console.log(error);
             setAbleLogout(false);
-            alert("You have been logged out due to inactivity")
             localStorage.removeItem("bearerToken");
             localStorage.removeItem("refreshToken");
             localStorage.removeItem("timeOfCreation");
