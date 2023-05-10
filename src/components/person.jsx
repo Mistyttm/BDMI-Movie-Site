@@ -89,7 +89,8 @@ function Person() {
                         };
                     })
                 )
-                .then((person) => setRowData(person));
+                .then((person) => setRowData(person))
+                .catch((err) => console.log(err));
         },
         [apiURL, token?.token]
     );

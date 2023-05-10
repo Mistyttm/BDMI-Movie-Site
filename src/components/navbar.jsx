@@ -49,8 +49,8 @@ function Navbar() {
                     <input
                         className="searchBox"
                         type="text"
-                        id="globalSearch"
-                        name="globalSearch"
+                        id="q"
+                        name="q"
                         placeholder="Search"
                     />
                 </form>
