@@ -10,6 +10,10 @@ import Genre from "../components/genreList";
 import getApiData from "../apis/individualMovieApiCalls";
 import { tempDataMovie } from "../components/dummyData";
 import "../Styles/Movies/IndividualMovie.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
+Aos.init();
 
 function Movie() {
     // Get the query parameters from the URL
@@ -92,44 +96,48 @@ function Movie() {
         currency: "USD",
     });
 
-    return(
+    return (
         <div className="movieWrapper">
             <h1 className="movieTitle">{movieData?.title}</h1>
             <div className="movieContainer">
                 <div className="textContainer">
-                    <div className="plot">
-                        <p>
-                            <b className="titler">Plot</b>: {movieData?.plot}
-                        </p>
+                    <div data-aos="zoom-in-up">
+                        <div className="plot">
+                            <p>
+                                <b className="titler">Plot</b>:{" "}
+                                {movieData?.plot}
+                            </p>
+                        </div>
                     </div>
-                    <div className="mainText">
-                        <p>
-                            <b className="titler">Release Date</b>:{" "}
-                            {movieData?.year}
-                        </p>
-                        <p>
-                            <b className="titler">Runtime</b>:{" "}
-                            {movieData?.runtime} minutes
-                        </p>
-                        <p>
-                            <b className="titler">Boxoffice</b>:{" "}
-                            {formatUSD.format(movieData?.boxoffice)}
-                        </p>
-                        <p>
-                            <b className="titler">Release Countries</b>:{" "}
-                            {movieData?.country}
-                        </p>
-                        <p>
-                            <b className="titler genre">Genres</b>:
-                        </p>
-                        <Genre strings={movieData?.genres} />
+                    <div data-aos="zoom-in-up">
+                        <div className="mainText">
+                            <p>
+                                <b className="titler">Release Date</b>:{" "}
+                                {movieData?.year}
+                            </p>
+                            <p>
+                                <b className="titler">Runtime</b>:{" "}
+                                {movieData?.runtime} minutes
+                            </p>
+                            <p>
+                                <b className="titler">Boxoffice</b>:{" "}
+                                {formatUSD.format(movieData?.boxoffice)}
+                            </p>
+                            <p>
+                                <b className="titler">Release Countries</b>:{" "}
+                                {movieData?.country}
+                            </p>
+                            <p>
+                                <b className="titler genre">Genres</b>:
+                            </p>
+                            <Genre strings={movieData?.genres} />
+                        </div>
                     </div>
                     <div className="criticVariable">
                         {movieData?.ratings?.map((criticData) => (
                             <Critic
                                 key={
-                                    queryParameters.get("m") +
-                                    criticData.source
+                                    queryParameters.get("m") + criticData.source
                                 }
                                 source={criticData.source}
                                 value={criticData.value}
@@ -137,13 +145,15 @@ function Movie() {
                         ))}
                     </div>
                 </div>
-                <div className="imgContainer">
-                    <img
-                        src={movieData?.poster}
-                        alt={moviePoster}
-                        className="poster"
-                        width="400"
-                    />
+                <div data-aos="zoom-in-left">
+                    <div className="imgContainer">
+                        <img
+                            src={movieData?.poster}
+                            alt={moviePoster}
+                            className="poster"
+                            width="400"
+                        />
+                    </div>
                 </div>
             </div>
             <div

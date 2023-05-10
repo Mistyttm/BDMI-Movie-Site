@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import checkToken from "../apis/tokenRefresh";
 import "../Styles/Navbar/navMedia.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
+Aos.init();
 
 function Navbar() {
     const [desktopLinksVisible, setDesktopLinksVisible] = useState(false);
