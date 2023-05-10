@@ -46,11 +46,10 @@ function RegisterBox() {
             })
                 .then((res) =>
                     res.json().then((res) => {
-                        console.log(res);
                         navigate("/Login"); // Redirect to the Login page on successful registration
                     })
                 )
-                .catch((error) => console.log(error));
+                .catch((error) => setFormError(error.toString()));
         }
     };
 
