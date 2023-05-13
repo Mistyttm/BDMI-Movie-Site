@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,16 +17,25 @@ function RegisterBox() {
     // Get the navigate function from the React Router
     const navigate = useNavigate();
 
+    const checkPass = () => {
+        console.log(registerConfPassword !== registerPassword);
+        console.log(registerPassword);
+        console.log(registerConfPassword);
+        if ((registerConfPassword !== registerPassword && registerConfPassword !== "" && registerPassword !== "")) {
+            console.log("doing the fucking thing");
+            setPassError("Passwords do not match");
+        } else {
+            console.log("Doing the other thing");
+            setPassError(null);
+        }
+    }
+
+    useEffect(() => checkPass(), [registerConfPassword,registerPassword]);
+
     // Function to handle user registration
     const register = () => {
         // Check if the email and password fields have been filled out correctly
-        if (
-            setEmailError === null ||
-            setPassError === null ||
-            registerEmail === "" ||
-            registerPassword === "" ||
-            registerConfPassword === ""
-        ) {
+        if (emailError !== null || passError !== null) {
             // If not, set the form error
             setFormError("Please fill the form out correctly");
         } else {
@@ -104,11 +113,6 @@ function RegisterBox() {
                         value={registerConfPassword}
                         onChange={(event) => {
                             const { value } = event.target;
-                            if (registerConfPassword !== registerPassword) {
-                                setPassError("Passwords do not match");
-                            } else {
-                                setPassError(null);
-                            }
                             setRegisterConfPassword(value);
                         }}
                     />
