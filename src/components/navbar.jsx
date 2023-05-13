@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import checkToken from "../apis/tokenRefresh";
+import logout from "../apis/logout";
 import "../Styles/Navbar/navMedia.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -34,16 +35,14 @@ function Navbar() {
         setMobileLinksVisible(!mobileLinksVisible);
     }
 
-    function logout() {
-        localStorage.removeItem("bearerToken");
-        localStorage.removeItem("refreshToken");
-        localStorage.removeItem("timeOfCreation");
+    function logoutButton() {
+        logout(JSON.parse(localStorage.getItem("bearerToken")).token);
     }
 
     const searchMovie = (e) => {
         e.preventDefault();
         navigate("/Movies?q=" + search);
-    }
+    };
 
     return (
         <div className="navbar-bg">
@@ -89,7 +88,7 @@ function Navbar() {
                                     className="loginreg"
                                     href="/"
                                     onClick={(e) => {
-                                        logout();
+                                        logoutButton();
                                     }}>
                                     Logout
                                 </a>
