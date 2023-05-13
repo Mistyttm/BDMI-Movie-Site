@@ -5,6 +5,7 @@ import "./Styles/App.css";
 import "./Styles/Navbar/navMedia.css";
 import { useEffect } from "react";
 
+
 function App(props) {
     useEffect(() => {
         document.title = props.title;
@@ -13,6 +14,7 @@ function App(props) {
         <div className="App">
             <Navbar />
             <div className="main-content">
+                
                 <HeroImg />
                 <div className="extra-text">
                     <h1>Welcome to BDMI</h1>

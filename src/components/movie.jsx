@@ -10,6 +10,10 @@ import Genre from "../components/genreList";
 import getApiData from "../apis/individualMovieApiCalls";
 import { tempDataMovie } from "../components/dummyData";
 import "../Styles/Movies/IndividualMovie.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
+Aos.init();
 
 function Movie() {
     // Get the query parameters from the URL
@@ -22,15 +26,16 @@ function Movie() {
 
     // Store the data returned by the API in movieData state
     const [movieData, setMovieData] = useState(tempDataMovie);
+    const [apiError, setApiError] = useState();
 
     // Call the API and update movieData state on component mount
     useEffect(() => {
-        getApiData(apiURL, setMovieData);
+        getApiData(apiURL, setMovieData, setApiError);
     }, [apiURL, setMovieData]);
 
     // Update the document title with the movie title
     useEffect(() => {
-        document.title = movieData.title;
+        document.title = movieData?.title;
     }, [movieData]);
 
     // Define the columns for the AgGridReact table
@@ -58,8 +63,8 @@ function Movie() {
     const onGridReady = useCallback(
         (params) => {
             fetch(apiURL)
-                .then((res) => res.json())
-                .then((data) => data.principals)
+                .then((res) => res?.json())
+                .then((data) => data?.principals)
                 .then((principal) =>
                     principal.map((person) => {
                         return {
@@ -84,51 +89,55 @@ function Movie() {
         [navigate]
     );
 
-    const moviePoster = "Poster for " + movieData.title;
+    const moviePoster = "Poster for " + movieData?.title;
 
     const formatUSD = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
     });
 
-    return(
+    return (
         <div className="movieWrapper">
-            <h1 className="movieTitle">{movieData.title}</h1>
+            <h1 className="movieTitle">{movieData?.title}</h1>
             <div className="movieContainer">
                 <div className="textContainer">
-                    <div className="plot">
-                        <p>
-                            <b className="titler">Plot</b>: {movieData.plot}
-                        </p>
+                    <div data-aos="zoom-in-up">
+                        <div className="plot">
+                            <p>
+                                <b className="titler">Plot</b>:{" "}
+                                {movieData?.plot}
+                            </p>
+                        </div>
                     </div>
-                    <div className="mainText">
-                        <p>
-                            <b className="titler">Release Date</b>:{" "}
-                            {movieData.year}
-                        </p>
-                        <p>
-                            <b className="titler">Runtime</b>:{" "}
-                            {movieData.runtime} minutes
-                        </p>
-                        <p>
-                            <b className="titler">Boxoffice</b>:{" "}
-                            {formatUSD.format(movieData.boxoffice)}
-                        </p>
-                        <p>
-                            <b className="titler">Release Countries</b>:{" "}
-                            {movieData.country}
-                        </p>
-                        <p>
-                            <b className="titler genre">Genres</b>:
-                        </p>
-                        <Genre strings={movieData.genres} />
+                    <div data-aos="zoom-in-up">
+                        <div className="mainText">
+                            <p>
+                                <b className="titler">Release Date</b>:{" "}
+                                {movieData?.year}
+                            </p>
+                            <p>
+                                <b className="titler">Runtime</b>:{" "}
+                                {movieData?.runtime} minutes
+                            </p>
+                            <p>
+                                <b className="titler">Boxoffice</b>:{" "}
+                                {formatUSD.format(movieData?.boxoffice)}
+                            </p>
+                            <p>
+                                <b className="titler">Release Countries</b>:{" "}
+                                {movieData?.country}
+                            </p>
+                            <p>
+                                <b className="titler genre">Genres</b>:
+                            </p>
+                            <Genre strings={movieData?.genres} />
+                        </div>
                     </div>
                     <div className="criticVariable">
-                        {movieData.ratings.map((criticData) => (
+                        {movieData?.ratings?.map((criticData) => (
                             <Critic
                                 key={
-                                    queryParameters.get("m") +
-                                    criticData.source
+                                    queryParameters.get("m") + criticData.source
                                 }
                                 source={criticData.source}
                                 value={criticData.value}
@@ -136,13 +145,15 @@ function Movie() {
                         ))}
                     </div>
                 </div>
-                <div className="imgContainer">
-                    <img
-                        src={movieData.poster}
-                        alt={moviePoster}
-                        className="poster"
-                        width="400"
-                    />
+                <div data-aos="zoom-in-left">
+                    <div className="imgContainer">
+                        <img
+                            src={movieData?.poster}
+                            alt={moviePoster}
+                            className="poster"
+                            width="400"
+                        />
+                    </div>
                 </div>
             </div>
             <div

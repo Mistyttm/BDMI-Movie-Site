@@ -50,7 +50,10 @@ function LoginBox() {
                     "refreshToken",
                     JSON.stringify(data.refreshToken)
                 );
-                localStorage.setItem("timeOfCreation", JSON.stringify(date));
+                localStorage.setItem(
+                    "timeOfCreation",
+                    JSON.stringify(Math.floor(date / 1000))
+                );
                 navigate("/");
             } else {
                 // If a bearer token is not received, set the login error to the error message returned by the API

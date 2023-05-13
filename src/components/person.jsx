@@ -3,10 +3,15 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { tempDataPerson } from "./dummyData";
 import getApiData from "../apis/individualPersonApiCalls";
+import UnautorisedPerson from "../components/loggedOutPerson";
+import { refresh } from "../apis/tokenRefresh";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
+
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 import {
     BarChart,
@@ -19,9 +24,13 @@ import {
     Label,
 } from "recharts";
 
+Aos.init();
+
 function Person() {
     // Extracting the URL query parameter using useSearchParams
     const [queryParameters] = useSearchParams();
+
+    refresh(JSON.parse(localStorage.getItem("refreshToken")).token);
 
     // Generating the API URL for fetching the person data based on the query parameter
     const apiURL =
@@ -29,7 +38,7 @@ function Person() {
 
     // Initializing personData state with tempDataPerson
     const [personData, setPersonData] = useState(tempDataPerson);
-    
+
     // Using useNavigate hook from react-router-dom for navigation
     const navigate = useNavigate();
 
@@ -89,7 +98,12 @@ function Person() {
                         };
                     })
                 )
-                .then((person) => setRowData(person));
+                .then((person) => setRowData(person))
+                .catch((err) => {
+                    setPersonData(tempDataPerson);
+                    console.log(err.message);
+                    return(<UnautorisedPerson />);
+                });
         },
         [apiURL, token?.token]
     );
@@ -109,7 +123,7 @@ function Person() {
 
     // Memoizing the IMDB ratings data from the person's movie roles data
     const IMDBData = useMemo(
-        () => personData.roles.map((role) => role.imdbRating),
+        () => personData?.roles?.map((role) => role.imdbRating),
         [personData]
     );
 
@@ -118,7 +132,7 @@ function Person() {
         () =>
             Array.from({ length: 10 }, (_, i) => ({
                 amount: `${i}-${i + 1}`,
-                ratings: IMDBData.filter(
+                ratings: IMDBData?.filter(
                     (rating) => rating >= i && rating < i + 1
                 ).length,
             })),
@@ -127,36 +141,44 @@ function Person() {
 
     return (
         <div className="pageWrapper box1">
-            <div className="personWrapper">
-                <h1>{personData.name}</h1>
-                <h2>
-                    {personData.birthYear} - {personData.deathyear}
-                </h2>
-                <div className="personCharacters">
-                    <div
-                        className="movieInfoTable ag-theme-alpine"
-                        style={{ height: "300px", width: "720px" }}>
-                        <AgGridReact
-                            rowSelection={"single"}
-                            onRowSelected={rowSelected}
-                            columnDefs={columns}
-                            rowData={rowData}
-                            onGridReady={onGridReady}
-                        />
+            <div data-aos="zoom-in-right">
+                <div className="personWrapper">
+                    <h1>{personData.name}</h1>
+                    <h2>
+                        {personData.birthYear} - {personData.deathYear}
+                    </h2>
+                    <div className="personCharacters">
+                        <div
+                            className="movieInfoTable ag-theme-alpine"
+                            style={{ height: "300px", width: "720px" }}>
+                            <AgGridReact
+                                rowSelection={"single"}
+                                onRowSelected={rowSelected}
+                                columnDefs={columns}
+                                rowData={rowData}
+                                onGridReady={onGridReady}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="graphWrapper">
-                <div className="barChart">
-                    <h2>Ratings at a Glance</h2>
-                    <BarChart width={730} height={250} data={data} className="Graph">
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="amount" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="ratings" fill="#8884d8" />
-                    </BarChart>
+            <div data-aos="zoom-in-left">
+                <div className="graphWrapper">
+                    <div className="barChart">
+                        <h2>Ratings at a Glance</h2>
+                        <BarChart
+                            width={730}
+                            height={250}
+                            data={data}
+                            className="Graph">
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="amount" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="ratings" fill="#8884d8" />
+                        </BarChart>
+                    </div>
                 </div>
             </div>
         </div>
