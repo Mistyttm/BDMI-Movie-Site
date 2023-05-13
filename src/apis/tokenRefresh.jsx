@@ -43,12 +43,6 @@ export default async function checkToken(setAbleLogout) {
     const refreshToken = JSON.parse(localStorage.getItem("refreshToken"));
     const time = JSON.parse(localStorage.getItem("timeOfCreation"));
 
-    console.log(
-        bearerToken?.expires_in &&
-            refreshToken?.token &&
-            time &&
-            date - time > bearerToken.expires_in
-    );
     // Check if the bearer token, refresh token, and time of creation exist and the bearer token has expired.
     if (
         bearerToken?.expires_in &&

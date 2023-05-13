@@ -4,7 +4,6 @@ import { AgGridReact } from "ag-grid-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import CountStatusBarComponent from "../components/countStatusBarComponent";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,8 +12,10 @@ import {
     faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Movies/Movies.css";
+import paginationTotal from "../components/paginationTotal";
 
 function Movies(props) {
+    const URL = "http://sefdb02.qut.edu.au:3000/movies/search";
     // Sets the document title using props.title when the component mounts
     useEffect(() => {
         document.title = props.title;
@@ -27,12 +28,13 @@ function Movies(props) {
     const [requestError, setRequestError] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedYear, setSelectedYear] = useState("");
+    const [pagData, setPagData] = useState();
+    const [results, setResults] = useState(0);
 
     // Initializes the navigate function from the useNavigate hook
     const navigate = useNavigate();
 
     // Initializes a page count variable to keep track of the current page number
-    let pageCount = 0;
 
     // Handles form submission by building a URL query string based on the search term and selected year
     // and navigating to the search page with the updated query string
@@ -113,6 +115,10 @@ function Movies(props) {
         [navigate]
     );
 
+    let pageCount = 0;
+
+    let tempNum = 0;
+
     // Sets up the ag-grid table data source based on the search parameters and current page count
     const onGridReady = useCallback(
         (params) => {
@@ -130,31 +136,35 @@ function Movies(props) {
                             "?title=" +
                             queryParameters.get("q") +
                             "&year=" +
-                            queryParameters.get("y") +
-                            "&page=" +
-                            pageCount;
+                            queryParameters.get("y");
+                        paginationTotal(URL + movieValue).then((data) =>
+                            setPagData(data)
+                        );
+                        movieValue = movieValue + "&page=" + pageCount;
                     } else if (queryParameters.get("q")) {
-                        movieValue =
-                            "?title=" +
-                            queryParameters.get("q") +
-                            "&page=" +
-                            pageCount;
+                        movieValue = "?title=" + queryParameters.get("q");
+                        paginationTotal(URL + movieValue).then((data) =>
+                            setPagData(data)
+                        );
+                        movieValue = movieValue + "&page=" + pageCount;
                     } else if (queryParameters.get("y")) {
-                        movieValue =
-                            "?year=" +
-                            queryParameters.get("y") +
-                            "&page=" +
-                            pageCount;
+                        movieValue = "?year=" + queryParameters.get("y");
+                        paginationTotal(URL + movieValue).then((data) =>
+                            setPagData(data)
+                        );
+                        movieValue = movieValue + "&page=" + pageCount;
                     } else {
+                        paginationTotal(URL).then((data) => setPagData(data));
                         movieValue = "?page=" + pageCount;
                     }
                     // Fetches movie data from server and sets data source
-                    fetch(
-                        "http://sefdb02.qut.edu.au:3000/movies/search" +
-                            movieValue
-                    )
+                    fetch(URL + movieValue)
                         .then((res) => res.json())
-                        .then((data) => params.successCallback(data.data, -1))
+                        .then((data) => {
+                            tempNum = tempNum + data.data.length;
+                            params.successCallback(data.data, -1);
+                            setResults(tempNum);
+                        })
                         .catch((err) =>
                             setRequestError(
                                 "404: Movies could not be found at this time. Please try again later."
@@ -166,6 +176,8 @@ function Movies(props) {
         },
         [queryParameters]
     );
+
+    console.log(results);
 
     // Populates an array of available years
     let availableYears = [];
@@ -221,6 +233,9 @@ function Movies(props) {
                         </button>
                     </form>
                 </div>
+                <p>
+                    Showing <b>{results}</b> of <b>{pagData}</b> results
+                </p>
                 <div
                     className="ag-theme-alpine"
                     style={{ height: "600px", width: "1200px" }}>
