@@ -7,7 +7,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 
 import Critic from "./CriticList";
 import Genre from "./GenreList";
-import getApiData from "../../apis/individualMovieApiCalls";
+import getApiData, { personRoles } from "../../apis/individualMovieApiCalls";
 import { tempDataMovie } from "../GeneralPurpose/DummyData";
 import "../../Styles/Movies/IndividualMovie.css";
 import Aos from "aos";
@@ -62,20 +62,7 @@ function Movie() {
     // Fetch data from the API and update rowData state on AgGridReact table ready
     const onGridReady = useCallback(
         (params) => {
-            fetch(apiURL)
-                .then((res) => res?.json())
-                .then((data) => data?.principals)
-                .then((principal) =>
-                    principal.map((person) => {
-                        return {
-                            id: person.id,
-                            category: person.category,
-                            name: person.name,
-                            characters: person.characters,
-                        };
-                    })
-                )
-                .then((books) => setRowData(books));
+            personRoles(apiURL, setRowData)
         },
         [apiURL]
     );
