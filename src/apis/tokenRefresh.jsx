@@ -24,7 +24,10 @@ export const refresh = async (token) => {
         // If the token was successfully refreshed, store the new tokens and the time of creation in local storage
         localStorage.setItem("bearerToken", JSON.stringify(data.bearerToken));
         localStorage.setItem("refreshToken", JSON.stringify(data.refreshToken));
-        localStorage.setItem("timeOfCreation", JSON.stringify(Math.floor(time / 1000)));
+        localStorage.setItem(
+            "timeOfCreation",
+            JSON.stringify(Math.floor(time / 1000))
+        );
         return true;
     } catch (error) {
         // If an error occurred, throw an error with the message
@@ -40,6 +43,12 @@ export default async function checkToken(setAbleLogout) {
     const refreshToken = JSON.parse(localStorage.getItem("refreshToken"));
     const time = JSON.parse(localStorage.getItem("timeOfCreation"));
 
+    console.log(
+        bearerToken?.expires_in &&
+            refreshToken?.token &&
+            time &&
+            date - time > bearerToken.expires_in
+    );
     // Check if the bearer token, refresh token, and time of creation exist and the bearer token has expired.
     if (
         bearerToken?.expires_in &&

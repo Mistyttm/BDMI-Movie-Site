@@ -167,16 +167,6 @@ function Movies(props) {
         [queryParameters]
     );
 
-    const statusBar = useMemo(() => {
-        return {
-            statusPanels: [
-                {
-                    statusPanel: CountStatusBarComponent,
-                },
-            ],
-        };
-    }, []);
-
     // Populates an array of available years
     let availableYears = [];
     for (let i = 1990; i <= 2023; i++) {
@@ -196,7 +186,9 @@ function Movies(props) {
                 ) : null}
                 <div>
                     <form onSubmit={handleFormSubmit} className="searchForm">
-                        <label><h3>Search:</h3></label>
+                        <label>
+                            <h3>Search:</h3>
+                        </label>
                         <div className="inputs">
                             <input
                                 type="text"
@@ -245,7 +237,6 @@ function Movies(props) {
                         maxBlocksInCache={10}
                         onGridReady={onGridReady}
                         onRowSelected={onRowSelected}
-                        statusBar={statusBar}
                     />
                 </div>
             </div>

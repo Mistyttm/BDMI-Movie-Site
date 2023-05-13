@@ -3,6 +3,8 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { tempDataPerson } from "./dummyData";
 import getApiData from "../apis/individualPersonApiCalls";
+import UnautorisedPerson from "../components/loggedOutPerson";
+import { refresh } from "../apis/tokenRefresh";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -27,6 +29,8 @@ Aos.init();
 function Person() {
     // Extracting the URL query parameter using useSearchParams
     const [queryParameters] = useSearchParams();
+
+    refresh(JSON.parse(localStorage.getItem("refreshToken")).token);
 
     // Generating the API URL for fetching the person data based on the query parameter
     const apiURL =
@@ -95,7 +99,11 @@ function Person() {
                     })
                 )
                 .then((person) => setRowData(person))
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    setPersonData(tempDataPerson);
+                    console.log(err.message);
+                    return(<UnautorisedPerson />);
+                });
         },
         [apiURL, token?.token]
     );
@@ -115,7 +123,7 @@ function Person() {
 
     // Memoizing the IMDB ratings data from the person's movie roles data
     const IMDBData = useMemo(
-        () => personData.roles.map((role) => role.imdbRating),
+        () => personData?.roles?.map((role) => role.imdbRating),
         [personData]
     );
 
@@ -124,7 +132,7 @@ function Person() {
         () =>
             Array.from({ length: 10 }, (_, i) => ({
                 amount: `${i}-${i + 1}`,
-                ratings: IMDBData.filter(
+                ratings: IMDBData?.filter(
                     (rating) => rating >= i && rating < i + 1
                 ).length,
             })),
