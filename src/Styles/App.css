@@ -40,6 +40,15 @@ body{
     justify-content: space-between;
 }
 
+#subButton {
+    position: absolute;
+    border: none;
+    background-color: #ffffff00;
+    color: #b9b9b9;
+    margin-left: -9.5em;
+    margin-top: .9em;
+}
+
 .logo {
     font-family: 'Koulen', cursive;
     margin-top: .4rem;

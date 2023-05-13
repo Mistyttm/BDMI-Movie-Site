@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import checkToken from "../apis/tokenRefresh";
 import "../Styles/Navbar/navMedia.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import {
+    faCircleExclamation,
+    faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
+import "../Styles/Movies/Movies.css";
 
 Aos.init();
 
 function Navbar() {
+    const navigate = useNavigate();
+
     const [desktopLinksVisible, setDesktopLinksVisible] = useState(false);
     const [mobileLinksVisible, setMobileLinksVisible] = useState(false);
     const [ableLogout, setAbleLogout] = useState(false);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         checkToken(setAbleLogout);
@@ -32,6 +40,11 @@ function Navbar() {
         localStorage.removeItem("timeOfCreation");
     }
 
+    const searchMovie = (e) => {
+        e.preventDefault();
+        navigate("/Movies?q=" + search);
+    }
+
     return (
         <div className="navbar-bg">
             <nav className="navlinks">
@@ -49,14 +62,19 @@ function Navbar() {
                     className="icon">
                     <FontAwesomeIcon icon={faBars} />
                 </a>
-                <form action="/Movies">
+                <form onSubmit={searchMovie}>
                     <input
                         className="searchBox"
                         type="text"
                         id="q"
                         name="q"
                         placeholder="Search"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                     />
+                    <button id="subButton" type="submit" onClick={searchMovie}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
                 </form>
                 <ul>
                     <li id="login">
