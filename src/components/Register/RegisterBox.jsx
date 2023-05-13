@@ -1,7 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import RegisterApi from "../../apis/RegisterApiCall";
 
 function RegisterBox() {
     // Define state variables for the email, password, and confirmation password fields
@@ -13,9 +14,6 @@ function RegisterBox() {
     const [emailError, setEmailError] = useState(null);
     const [passError, setPassError] = useState(null);
     const [formError, setFormError] = useState(null);
-
-    // Get the navigate function from the React Router
-    const navigate = useNavigate();
 
     const checkPass = () => {
         if ((registerConfPassword !== registerPassword && registerConfPassword !== "" && registerPassword !== "")) {
@@ -38,22 +36,7 @@ function RegisterBox() {
             setFormError(null);
             const url = "http://sefdb02.qut.edu.au:3000/user/register";
 
-            fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: registerEmail,
-                    password: registerPassword,
-                }),
-            })
-                .then((res) =>
-                    res.json().then((res) => {
-                        navigate("/Login"); // Redirect to the Login page on successful registration
-                    })
-                )
-                .catch((error) => setFormError(error.toString()));
+            RegisterApi(url, registerEmail, registerPassword, setFormError);
         }
     };
 
