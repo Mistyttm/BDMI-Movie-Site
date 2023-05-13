@@ -4,7 +4,9 @@
     margin: auto;
     height: 40em;
     border-radius: 50px;
-    padding: 3%
+    padding: 3%;
+    margin-top: 5em;
+    margin-bottom: 5em;
 }
 
 .registerBox {
@@ -20,7 +22,6 @@ h1.loginTitle {
 }
 
 input.registerEmail[type=text] {
-    margin-left: 4.5em;
     width: 530px;
     border: none;
     padding: 10px;
@@ -28,7 +29,6 @@ input.registerEmail[type=text] {
 }
 
 input.registerPassword[type=password] {
-    margin-left: 4.5em;
     margin-top: 3em;
     width: 530px;
     border: none;
@@ -37,7 +37,6 @@ input.registerPassword[type=password] {
 }
 
 input.registerConfPassword[type=password] {
-    margin-left: 4.5em;
     margin-top: 3em;
     margin-bottom: 3em;
     width: 530px;

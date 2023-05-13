@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import checkToken from "../apis/tokenRefresh";
 import logout from "../apis/logout";
 import "../Styles/Navbar/navMedia.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import {
-    faCircleExclamation,
-    faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Movies/Movies.css";
 
 Aos.init();
@@ -34,9 +30,10 @@ function Navbar() {
     function toggleMobileLinks() {
         setMobileLinksVisible(!mobileLinksVisible);
     }
-
     function logoutButton() {
-        logout(JSON.parse(localStorage.getItem("refreshToken")).token);
+        let token = JSON.parse(localStorage.getItem("refreshToken")).token;
+        logout(token);
+        setAbleLogout(false);
     }
 
     const searchMovie = (e) => {
@@ -88,6 +85,7 @@ function Navbar() {
                                     className="loginreg"
                                     href="/"
                                     onClick={(e) => {
+                                        e.preventDefault();
                                         logoutButton();
                                     }}>
                                     Logout

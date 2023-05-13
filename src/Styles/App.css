@@ -34,7 +34,7 @@ body{
 .navlinks{
     background-color: #58C3FF;
     width: 100%;
-    padding: 1.5em;
+    padding: 0 1.5em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -46,24 +46,27 @@ body{
     background-color: #ffffff00;
     color: #b9b9b9;
     margin-left: -9.5em;
-    margin-top: .9em;
+    margin-top: 3.2em;
 }
 
 .logo {
     font-family: 'Koulen', cursive;
-    margin-top: .4rem;
+    margin-top: 1rem;
+    margin-bottom: -1em;
+    font-size: 3em;
 }
 
 input.searchBox[type=text] {
     width: 900px;
     margin: auto;
-    margin-top: .4em;
+    margin-top: 2.5em;
     margin-right: 7em;
     padding: 10px;
     padding-left: 25px;
     border-radius: 100px;
     border: none;
     resize: horizontal;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 nav.navlinks ul {
@@ -76,6 +79,7 @@ nav.navlinks li#login{
     margin-top: .6em;
     font-size: auto;
     list-style: none;
+    font-size: 1.5em;
 }
 
 .loginreg:link {
@@ -174,8 +178,12 @@ div#desktopLinks {
     display: none;
     font-family: 'Koulen', cursive;
     text-align: left;
+    font-size: 1.3em;
     padding: 2%;
-    background-color: #C6B9CD
+    background-color: #C6B9CD;
+    position:absolute;
+    z-index: 9999;
+    width: 100%;
 }
 
 nav.mobileNav a.icon {
@@ -187,7 +195,7 @@ nav.mobileNav a.icon {
 nav.navlinks a.icon {
     color: white;
     text-decoration: none;
-    margin-top: .1%;
+    margin-top: .7em;
     font-size: 230%;
 }
 .mobileLink:link {

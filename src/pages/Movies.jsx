@@ -2,8 +2,8 @@
 import { React, useCallback, useMemo, useState, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +12,7 @@ import {
     faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Movies/Movies.css";
-import paginationTotal from "../components/paginationTotal";
+import paginationTotal from "../components/PaginationTotal";
 
 function Movies(props) {
     const URL = "http://sefdb02.qut.edu.au:3000/movies/search";
@@ -162,7 +162,10 @@ function Movies(props) {
                         .then((res) => res.json())
                         .then((data) => {
                             tempNum = tempNum + data.data.length;
-                            params.successCallback(data.data, -1);
+                            params.successCallback(
+                                data.data,
+                                data.pagination.total
+                            );
                             setResults(tempNum);
                         })
                         .catch((err) =>
@@ -176,8 +179,6 @@ function Movies(props) {
         },
         [queryParameters]
     );
-
-    console.log(results);
 
     // Populates an array of available years
     let availableYears = [];
@@ -233,9 +234,9 @@ function Movies(props) {
                         </button>
                     </form>
                 </div>
-                <p>
+                <h4>
                     Showing <b>{results}</b> of <b>{pagData}</b> results
-                </p>
+                </h4>
                 <div
                     className="ag-theme-alpine"
                     style={{ height: "600px", width: "1200px" }}>

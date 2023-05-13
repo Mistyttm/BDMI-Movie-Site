@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/navbar";
-import Person from "../components/person";
-import Footer from "../components/footer";
+import Navbar from "../components/Navbar";
+import Person from "../components/Person";
+import Footer from "../components/Footer";
 import checkToken from "../apis/tokenRefresh";
-import UnautorisedPerson from "../components/loggedOutPerson";
+import UnautorisedPerson from "../components/LoggedOutPerson";
 import "../Styles/Person/person.css";
 
 function PersonPage() {

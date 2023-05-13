@@ -1,29 +1,33 @@
-import Navbar from "./components/navbar";
-import HeroImg from "./components/hero";
-import Footer from "./components/footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import NotFound from "./pages/notFound";
+import Home from "./pages/Home";
+import Movies from "./pages/Movies";
+import MoviePage from "./pages/MoviePage";
+import PersonPage from "./pages/PersonPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import "./Styles/App.css";
-import "./Styles/Navbar/navMedia.css";
-import { useEffect } from "react";
-
 
 function App(props) {
-    useEffect(() => {
-        document.title = props.title;
-    }, []);
     return (
-        <div className="App">
-            <Navbar />
-            <div className="main-content">
-                
-                <HeroImg />
-                <div className="extra-text">
-                    <h1>Welcome to BDMI</h1>
-                    <h2>We hope you find what you're looking for</h2>
-                    <p>We're not IMDB</p>
-                </div>
-            </div>
-            <Footer />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home title="Home" />} />
+                <Route
+                    path="/Movies"
+                    element={<Movies title="Search Movies" />}
+                />
+                <Route path="/MoviePage" element={<MoviePage />} />
+                <Route path="/Person" element={<PersonPage />} />
+                <Route path="/Login" element={<Login title="Login" />} />
+                <Route
+                    path="/Register"
+                    element={<Register title="Register" />}
+                />
+                <Route path="*" element={<NotFound title="Error: 404" />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 

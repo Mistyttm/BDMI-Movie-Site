@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-import LoginBox from "../components/loginBox";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import LoginBox from "../components/LoginBox";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "../Styles/Login/Login.css";
 import "../Styles/Login/LoginMedia.css";
 import Aos from "aos";

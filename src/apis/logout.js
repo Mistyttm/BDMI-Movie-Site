@@ -8,9 +8,9 @@ export default async function logout(token) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                'refreshToken': token
+                refreshToken: token
             })
-        }).then((e) => {console.log(e)});
+        });
 
         localStorage.removeItem("bearerToken");
         localStorage.removeItem("refreshToken");

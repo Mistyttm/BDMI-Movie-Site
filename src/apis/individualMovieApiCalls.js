@@ -1,4 +1,4 @@
-import { tempDataMovie } from "../components/dummyData";
+import { tempDataMovie } from "../components/DummyData";
 
 const getApiData = async (apiURL, setMovieData, setApiError) => {
     const response = await fetch(apiURL)
@@ -8,7 +8,6 @@ const getApiData = async (apiURL, setMovieData, setApiError) => {
             setMovieData(tempDataMovie);
             setApiError(err);
         });
-    
 };
 
 export default getApiData;

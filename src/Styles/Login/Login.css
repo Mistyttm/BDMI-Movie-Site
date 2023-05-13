@@ -5,6 +5,8 @@
     height: 40em;
     border-radius: 50px;
     padding: 3%;
+    margin-top: 5em;
+    margin-bottom: 5em;
 }
 
 .loginBox {
@@ -17,6 +19,7 @@ h1.loginTitle {
     font-family: "Koulen", cursive;
     font-size: 5em;
     margin-bottom: 0.5em;
+    margin-top: -0.3em;
 }
 
 input.loginEmail[type="text"] {
@@ -35,8 +38,8 @@ input.loginPassword[type="password"] {
     border-radius: 100px;
 }
 input.loginExpiry[type="checkbox"] {
-    width: 1em;
-    height: 1em;
+    width: 2em;
+    height: 2em;
     margin-right: 1em;
 }
 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-import { tempDataPerson } from "./dummyData";
+import { tempDataPerson } from "./DummyData";
 import getApiData from "../apis/individualPersonApiCalls";
-import UnautorisedPerson from "../components/loggedOutPerson";
+import UnautorisedPerson from "./LoggedOutPerson";
 import { refresh } from "../apis/tokenRefresh";
 
 import { AgGridReact } from "ag-grid-react";

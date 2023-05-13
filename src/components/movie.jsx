@@ -5,10 +5,10 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-import Critic from "../components/criticList";
-import Genre from "../components/genreList";
+import Critic from "./CriticList";
+import Genre from "./GenreList";
 import getApiData from "../apis/individualMovieApiCalls";
-import { tempDataMovie } from "../components/dummyData";
+import { tempDataMovie } from "./DummyData";
 import "../Styles/Movies/IndividualMovie.css";
 import Aos from "aos";
 import "aos/dist/aos.css";

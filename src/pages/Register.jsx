@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-import RegisterBox from "../components/registerBox";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import RegisterBox from "../components/RegisterBox";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "../Styles/Register/Register.css";
 import "../Styles/Register/RegisterMedia.css";
 import Aos from "aos";
