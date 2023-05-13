@@ -1,5 +1,5 @@
-const getApiData = async (apiURL, setMovieData, token) => {
-    const response = await fetch(apiURL, {
+const getApiData = (apiURL, setMovieData, token) => {
+    const response = fetch(apiURL, {
         headers: {
             accept: "application/json",
             Authorization: "Bearer " + token,
