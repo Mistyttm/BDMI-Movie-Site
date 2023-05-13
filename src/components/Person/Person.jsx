@@ -142,8 +142,13 @@ function Person() {
     );
 
     console.log(personError);
-    if (personError === true){
-        return <ErrorPopup />;
+    if (personError === true) {
+        document.title = "Error";
+        return (
+            <div data-aos="flip-right">
+                <ErrorPopup />
+            </div>
+        );
     }
     return (
         <div className="pageWrapper box1">

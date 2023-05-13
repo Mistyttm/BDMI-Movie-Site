@@ -14,7 +14,7 @@ function MovieGrid(setRequestError) {
 
     // Initializes state for any request errors, search term, and selected year
 
-    const [pagData, setPagData] = useState();
+    const [pagData, setPagData] = useState(0);
     const [results, setResults] = useState(0);
 
     // Initializes the navigate function from the useNavigate hook
@@ -138,9 +138,16 @@ function MovieGrid(setRequestError) {
 
     return (
         <div className="movie-grid">
-            <h4>
-                Showing <b>{results}</b> of <b>{pagData}</b> results
-            </h4>
+            {results === 0 ? (
+                <h4>
+                    Showing <b>{results}</b> results
+                </h4>
+            ) : null}
+            {results !== 0 ? (
+                <h4>
+                    Showing <b>{results}</b> of <b>{pagData}</b> results
+                </h4>
+            ) : null}
             <div
                 className="ag-theme-alpine"
                 style={{ height: "600px", width: "1200px" }}>
