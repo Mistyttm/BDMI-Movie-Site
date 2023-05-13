@@ -36,7 +36,7 @@ function Navbar() {
     }
 
     function logoutButton() {
-        logout(JSON.parse(localStorage.getItem("bearerToken")).token);
+        logout(JSON.parse(localStorage.getItem("refreshToken")).token);
     }
 
     const searchMovie = (e) => {
