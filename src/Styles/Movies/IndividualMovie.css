@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 55em;
+    height: auto;
 }
 
 /* Styles for genre list */
@@ -37,6 +37,10 @@ ul.genreList li {
 b.titler {
     font-size: 1.3em;
     font-family: 'Koulen', cursive;
+}
+
+.movieInforTable {
+    margin-top: 0;
 }
 
 /* Styles for movie genres */
@@ -84,6 +88,7 @@ div.criticVariable {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 2em;
 }
 
 /* Styles for different badges */
