@@ -1,8 +1,8 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
-import Movie from "../components/Movie";
-import Footer from "../components/Footer";
+import Navbar from "../components/GeneralPurpose/Navbar";
+import Movie from "../components/MoviesPage/Movie";
+import Footer from "../components/GeneralPurpose/Footer";
 import "../Styles/Movies/IndividualMovie.css";
 
 function MoviePage() {

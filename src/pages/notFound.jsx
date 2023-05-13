@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/GeneralPurpose/Navbar";
+import Footer from "../components/GeneralPurpose/Footer";
 import '../Styles/notFound/404.css';
 
 function NotFound(props) {

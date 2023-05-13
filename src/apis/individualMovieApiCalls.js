@@ -1,4 +1,4 @@
-import { tempDataMovie } from "../components/DummyData";
+import { tempDataMovie } from "../components/GeneralPurpose/DummyData";
 
 const getApiData = async (apiURL, setMovieData, setApiError) => {
     const response = await fetch(apiURL)

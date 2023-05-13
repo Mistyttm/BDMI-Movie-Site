@@ -1,6 +1,6 @@
-import Navbar from "../components/Navbar";
-import HeroImg from "../components/Hero";
-import Footer from "../components/Footer";
+import Navbar from "../components/GeneralPurpose/Navbar";
+import HeroImg from "../components/Home/Hero";
+import Footer from "../components/GeneralPurpose/Footer";
 import "../Styles/App.css";
 import "../Styles/Navbar/navMedia.css";
 import { useEffect } from "react";

@@ -2,8 +2,8 @@
 import { React, useCallback, useMemo, useState, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/GeneralPurpose/Navbar";
+import Footer from "../components/GeneralPurpose/Footer";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +12,7 @@ import {
     faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Movies/Movies.css";
-import paginationTotal from "../components/PaginationTotal";
+import paginationTotal from "../components/GeneralPurpose/PaginationTotal";
 
 function Movies(props) {
     const URL = "http://sefdb02.qut.edu.au:3000/movies/search";

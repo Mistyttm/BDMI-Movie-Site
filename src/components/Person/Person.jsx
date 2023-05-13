@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-import { tempDataPerson } from "./DummyData";
-import getApiData from "../apis/individualPersonApiCalls";
+import { tempDataPerson } from "../GeneralPurpose/DummyData";
+import getApiData from "../../apis/individualPersonApiCalls";
 import UnautorisedPerson from "./LoggedOutPerson";
-import { refresh } from "../apis/tokenRefresh";
+import { refresh } from "../../apis/tokenRefresh";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -102,7 +102,7 @@ function Person() {
                 .catch((err) => {
                     setPersonData(tempDataPerson);
                     console.log(err.message);
-                    return(<UnautorisedPerson />);
+                    return <UnautorisedPerson />;
                 });
         },
         [apiURL, token?.token]
