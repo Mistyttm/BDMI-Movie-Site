@@ -13,12 +13,12 @@ export const tempDataMovie = {
     plot: "Loading",
 };
 
-export const tempDataPerson = {
-    name: "Loading",
-    birthYear: null,
-    deathYear: null,
-    roles: [{ movieName: "Loading", movieID: "Loading", category: "Loading", characters: [], imdbRating: null }],
-};
+// export const tempDataPerson = {
+//     name: "Loading",
+//     birthYear: null,
+//     deathYear: null,
+//     roles: [{ movieName: "Loading", movieID: "Loading", category: "Loading", characters: [], imdbRating: null }],
+// };
 
 export let data = [
     {

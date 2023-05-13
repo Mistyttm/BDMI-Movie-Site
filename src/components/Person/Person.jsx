@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-import { tempDataPerson } from "../GeneralPurpose/DummyData";
+// import { tempDataPerson } from "../GeneralPurpose/DummyData";
 import getApiData from "../../apis/individualPersonApiCalls";
 import UnautorisedPerson from "./LoggedOutPerson";
+import ErrorPopup from "../GeneralPurpose/Error";
 import { refresh } from "../../apis/tokenRefresh";
 
 import { AgGridReact } from "ag-grid-react";
@@ -37,7 +38,8 @@ function Person() {
         "http://sefdb02.qut.edu.au:3000/people/" + queryParameters.get("p");
 
     // Initializing personData state with tempDataPerson
-    const [personData, setPersonData] = useState(tempDataPerson);
+    const [personData, setPersonData] = useState();
+    const [personError, setPersonError] = useState(false);
 
     // Using useNavigate hook from react-router-dom for navigation
     const navigate = useNavigate();
@@ -49,7 +51,7 @@ function Person() {
     // Also, updating the document title with the name of the person
     useEffect(() => {
         getApiData(apiURL, setPersonData, token?.token);
-        document.title = personData.name;
+        document.title = personData?.name;
     }, [apiURL]);
 
     // Defining columns for the ag-grid table
@@ -100,9 +102,9 @@ function Person() {
                 )
                 .then((person) => setRowData(person))
                 .catch((err) => {
-                    setPersonData(tempDataPerson);
-                    console.log(err.message);
-                    return <UnautorisedPerson />;
+                    setPersonData({});
+                    setPersonError(true);
+                    console.log(err);
                 });
         },
         [apiURL, token?.token]
@@ -110,7 +112,7 @@ function Person() {
 
     // Updating the document title with the name of the person
     useEffect(() => {
-        document.title = personData.name;
+        document.title = personData?.name;
     }, [personData]);
 
     // Defining a callback function for handling row selection event
@@ -139,13 +141,17 @@ function Person() {
         [IMDBData]
     );
 
+    console.log(personError);
+    if (personError === true){
+        return <ErrorPopup />;
+    }
     return (
         <div className="pageWrapper box1">
             <div data-aos="zoom-in-right">
                 <div className="personWrapper">
-                    <h1>{personData.name}</h1>
+                    <h1>{personData?.name}</h1>
                     <h2>
-                        {personData.birthYear} - {personData.deathYear}
+                        {personData?.birthYear} - {personData?.deathYear}
                     </h2>
                     <div className="personCharacters">
                         <div

@@ -8,6 +8,7 @@ import "../Styles/Person/person.css";
 
 function PersonPage() {
     const [loggedIn, setLoggedIn] = useState(false);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         checkToken(setLoggedIn);
