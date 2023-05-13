@@ -4,7 +4,7 @@ import { AgGridReact } from "ag-grid-react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-
+import callMovies from "../../apis/MovieGridApiCall";
 
 function MovieGrid(setRequestError) {
     const URL = "http://sefdb02.qut.edu.au:3000/movies/search";
@@ -88,7 +88,6 @@ function MovieGrid(setRequestError) {
 
     let pageCount = 0;
 
-    let tempNum = 0;
 
     // Sets up the ag-grid table data source based on the search parameters and current page count
     const onGridReady = useCallback(
@@ -128,22 +127,8 @@ function MovieGrid(setRequestError) {
                         paginationTotal(URL).then((data) => setPagData(data));
                         movieValue = "?page=" + pageCount;
                     }
-                    // Fetches movie data from server and sets data source
-                    fetch(URL + movieValue)
-                        .then((res) => res.json())
-                        .then((data) => {
-                            tempNum = tempNum + data.data.length;
-                            params.successCallback(
-                                data.data,
-                                data.pagination.total
-                            );
-                            setResults(tempNum);
-                        })
-                        .catch((err) =>
-                            setRequestError(
-                                "404: Movies could not be found at this time. Please try again later."
-                            )
-                        );
+
+                    callMovies(params, URL, setResults, setRequestError, movieValue);
                 },
             };
             params.api.setDatasource(dataSource);
