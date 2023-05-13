@@ -35,6 +35,7 @@ h1, h3 {
     background-color: #0b3142;
     border-radius: 25px;
     padding: 2em;
+    overflow: hidden;
 }
 
 input#search[type="text"] {
