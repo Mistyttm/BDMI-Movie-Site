@@ -14,7 +14,8 @@ export function personRoles(apiURL, setRowData) {
                 };
             })
         )
-        .then((books) => setRowData(books));
+        .then((books) => setRowData(books))
+        .catch((err) => console.log(err));
 }
 
 const getApiData = (apiURL, setMovieData, setApiError) => {
