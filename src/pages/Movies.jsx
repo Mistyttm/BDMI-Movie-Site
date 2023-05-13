@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Movies/Movies.css";
 import paginationTotal from "../components/GeneralPurpose/PaginationTotal";
+import MovieSearch from "../components/Movies/MovieSearch";
 
 function Movies(props) {
     const URL = "http://sefdb02.qut.edu.au:3000/movies/search";
@@ -26,8 +27,6 @@ function Movies(props) {
 
     // Initializes state for any request errors, search term, and selected year
     const [requestError, setRequestError] = useState(null);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [selectedYear, setSelectedYear] = useState("");
     const [pagData, setPagData] = useState();
     const [results, setResults] = useState(0);
 
@@ -35,21 +34,6 @@ function Movies(props) {
     const navigate = useNavigate();
 
     // Initializes a page count variable to keep track of the current page number
-
-    // Handles form submission by building a URL query string based on the search term and selected year
-    // and navigating to the search page with the updated query string
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        const query = new URLSearchParams();
-        if (searchTerm !== "") {
-            query.set("q", searchTerm);
-        }
-        if (selectedYear !== "") {
-            query.set("y", selectedYear);
-        }
-        navigate(`?${query.toString()}`);
-        window.location.reload(); // Reloads the window to trigger a new search
-    };
 
     // Defines the column definitions for the ag-grid table
     const columnDefs = [
@@ -180,11 +164,7 @@ function Movies(props) {
         [queryParameters]
     );
 
-    // Populates an array of available years
-    let availableYears = [];
-    for (let i = 1990; i <= 2023; i++) {
-        availableYears.push(i);
-    }
+    
 
     return (
         <div className="App">
@@ -197,43 +177,7 @@ function Movies(props) {
                         {requestError}
                     </p>
                 ) : null}
-                <div>
-                    <form onSubmit={handleFormSubmit} className="searchForm">
-                        <label>
-                            <h3>Search:</h3>
-                        </label>
-                        <div className="inputs">
-                            <input
-                                type="text"
-                                name="q"
-                                id="search"
-                                placeholder="Search"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                            <select
-                                value={selectedYear}
-                                className="optionsMenu"
-                                onChange={(e) =>
-                                    setSelectedYear(e.target.value)
-                                }>
-                                <option name="selectAYear" value="">
-                                    Select a Year
-                                </option>
-                                {availableYears.map((year) => {
-                                    return (
-                                        <option key={year} value={year}>
-                                            {year}
-                                        </option>
-                                    );
-                                })}
-                            </select>
-                        </div>
-                        <button type="submit" className="submitButton">
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </form>
-                </div>
+                <MovieSearch />
                 <h4>
                     Showing <b>{results}</b> of <b>{pagData}</b> results
                 </h4>
