@@ -18,14 +18,9 @@ function RegisterBox() {
     const navigate = useNavigate();
 
     const checkPass = () => {
-        console.log(registerConfPassword !== registerPassword);
-        console.log(registerPassword);
-        console.log(registerConfPassword);
         if ((registerConfPassword !== registerPassword && registerConfPassword !== "" && registerPassword !== "")) {
-            console.log("doing the fucking thing");
             setPassError("Passwords do not match");
         } else {
-            console.log("Doing the other thing");
             setPassError(null);
         }
     }
