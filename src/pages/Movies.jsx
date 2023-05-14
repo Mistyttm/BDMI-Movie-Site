@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { React, useCallback, useMemo, useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import Navbar from "../components/GeneralPurpose/Navbar";
 import Footer from "../components/GeneralPurpose/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
