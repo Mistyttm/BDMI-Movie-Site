@@ -8,10 +8,11 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import Critic from "./CriticList";
 import Genre from "./GenreList";
 import getApiData, { personRoles } from "../../apis/individualMovieApiCalls";
-import { tempDataMovie } from "../GeneralPurpose/DummyData";
+// import { tempDataMovie } from "../GeneralPurpose/DummyData";
 import "../../Styles/Movies/IndividualMovie.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import ErrorPopup from "../GeneralPurpose/Error";
 
 Aos.init();
 
@@ -25,13 +26,13 @@ function Movie() {
         queryParameters.get("m");
 
     // Store the data returned by the API in movieData state
-    const [movieData, setMovieData] = useState(tempDataMovie);
-    const [apiError, setApiError] = useState();
+    const [movieData, setMovieData] = useState();
+    const [apiError, setApiError] = useState(false);
 
     // Call the API and update movieData state on component mount
     useEffect(() => {
         getApiData(apiURL, setMovieData, setApiError);
-    }, [apiURL, setMovieData]);
+    }, [apiURL, setMovieData, setApiError]);
 
     // Update the document title with the movie title
     useEffect(() => {
@@ -62,7 +63,7 @@ function Movie() {
     // Fetch data from the API and update rowData state on AgGridReact table ready
     const onGridReady = useCallback(
         (params) => {
-            personRoles(apiURL, setRowData)
+            personRoles(apiURL, setRowData);
         },
         [apiURL]
     );
@@ -82,6 +83,16 @@ function Movie() {
         style: "currency",
         currency: "USD",
     });
+
+
+    if (movieData?.error === true) {
+        document.title = "Error";
+        return (
+            <div data-aos="flip-right">
+                <ErrorPopup />
+            </div>
+        );
+    }
 
     return (
         <div className="movieWrapper">

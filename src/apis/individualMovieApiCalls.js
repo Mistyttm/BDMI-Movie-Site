@@ -19,13 +19,15 @@ export function personRoles(apiURL, setRowData) {
 }
 
 const getApiData = (apiURL, setMovieData, setApiError) => {
-    const response = fetch(apiURL)
-        .then((response) => response.json())
-        .then((response) => setMovieData(response))
-        .catch((err) => {
-            setMovieData(tempDataMovie);
-            setApiError(err);
-        });
+    try {
+        const response = fetch(apiURL)
+            .then((response) => response.json())
+            .then((response) => setMovieData(response));
+    } catch (error) {
+        console.error(error)
+        console.log("hi");
+        setApiError(true);
+    }
 };
 
 export default getApiData;

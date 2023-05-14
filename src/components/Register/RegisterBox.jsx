@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import RegisterApi from "../../apis/RegisterApiCall";
+
 
 function RegisterBox() {
     // Define state variables for the email, password, and confirmation password fields
@@ -14,6 +15,8 @@ function RegisterBox() {
     const [emailError, setEmailError] = useState(null);
     const [passError, setPassError] = useState(null);
     const [formError, setFormError] = useState(null);
+
+    const navigate = useNavigate();
 
     const checkPass = () => {
         if ((registerConfPassword !== registerPassword && registerConfPassword !== "" && registerPassword !== "")) {
@@ -36,7 +39,7 @@ function RegisterBox() {
             setFormError(null);
             const url = "http://sefdb02.qut.edu.au:3000/user/register";
 
-            RegisterApi(url, registerEmail, registerPassword, setFormError);
+            RegisterApi(url, registerEmail, registerPassword, setFormError, navigate);
         }
     };
 

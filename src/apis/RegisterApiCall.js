@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
+
 
 // Function to handle user registration
-function RegisterApi(url, registerEmail, registerPassword, setFormError) {
-    const navigate = useNavigate();
+function RegisterApi(url, registerEmail, registerPassword, setFormError, navigate) {
+    
     fetch(url, {
         method: "POST",
         headers: {
